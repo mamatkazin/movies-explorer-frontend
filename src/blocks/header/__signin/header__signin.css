@@ -1,0 +1,15 @@
+.header__signin{
+  width: 54px;
+  height: 26px;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 16px;
+}
+
+@media all and (min-width: 768px) {
+  .header__signin {
+    width: 76px;
+    height: 32px;
+    font-size: 12px;
+  }
+}
