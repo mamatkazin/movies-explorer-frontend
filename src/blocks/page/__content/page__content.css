@@ -1,7 +1,7 @@
-/* .page__content {
+.page__content {
   max-width: calc(100% - 28px);
-  width: 100%;
-  margin: 0 auto;
+  /* width: 100%;
+  margin: 0 auto; */
 }
 
 @media all and (min-width: 768px) {
@@ -14,4 +14,4 @@
   .page__content {
     max-width: calc(100% - 140px);
   }
-} */
+}

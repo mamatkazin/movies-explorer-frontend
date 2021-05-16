@@ -1,0 +1,8 @@
+@import url('../../blocks/about-project/about-project.css');
+@import url('../../blocks/about-project/__blocks/about-project__blocks.css');
+@import url('../../blocks/about-project/__header/about-project__header.css');
+@import url('../../blocks/about-project/__timeless/about-project__timeless.css');
+@import url('../../blocks/about-project/__timeless-item/about-project__timeless-item.css');
+@import url('../../blocks/about-project/__timeless-first-part/about-project__timeless-first-part.css');
+@import url('../../blocks/about-project/__timeless-second-part/about-project__timeless-second-part.css');
+@import url('../../blocks/about-project/__timeless-text/about-project__timeless-text.css');

@@ -3,11 +3,25 @@
   background-color: #073042;
   display: flex;
   align-items: center;
+  position: relative;
 }
+
+.banner::before{
+    content: url(../../images/emblem320.svg);
+    position: absolute;
+    left: calc(50% - 124px);
+    top: calc(46% - 122px);
+  }
 
 @media all and (min-width: 768px) {
   .banner{
     min-height: 784px;
+  }
+
+  .banner::before{
+    content: url(../../images/emblem.svg);
+    left: calc(50% - 160px);
+    top: calc(49% - 160px);
   }
 }
 
@@ -15,4 +29,9 @@
   .banner{
     min-height: 524px;
   }
+
+  .banner::before{
+    top: calc(46% - 160px);
+  }
 }
+

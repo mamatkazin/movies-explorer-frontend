@@ -15,7 +15,7 @@ function Header(props) {
 
   return (
     <header className="header">
-      <div className="header__content">
+      <div className="header__content page__content">
         <img className="logo header__logo" src={logo} alt="Логотип дипломного проекта" />
         {
           !props.loggedIn ? (

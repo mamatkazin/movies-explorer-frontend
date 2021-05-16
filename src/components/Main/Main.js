@@ -1,18 +1,20 @@
-import React from "react";
-import Header from "../Header/Header";
-import Banner from "../Banner/Banner";
-import NavTab from "../NavTab/NavTab";
+import React from 'react';
+import Header from '../Header/Header';
+import Banner from '../Banner/Banner';
+import NavTab from '../NavTab/NavTab';
+import AboutProject from '../AboutProject';
 
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Main(props) {
   const currentUser = React.useContext(CurrentUserContext);
 
   return (
     <>
-      <Header loggedIn={props.loggedIn} ></Header>
+      <Header loggedIn={props.loggedIn}></Header>
       <Banner></Banner>
       <NavTab></NavTab>
+      <AboutProject />
     </>
     // <main className="content">
     //   <section className="profile content__profile">

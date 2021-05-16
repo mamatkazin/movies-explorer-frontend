@@ -1,5 +1,4 @@
 import React from "react";
-// import emblem from "../../images/emblem.svg";
 import "./Banner.css";
 
 function Banner(props) {

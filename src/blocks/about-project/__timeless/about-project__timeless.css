@@ -1,0 +1,8 @@
+.about-project__timeless {
+  font-size: 14px;
+  line-height: 17px;
+  display: grid;
+  grid-template-columns: 228px 1fr;
+  grid-template-rows: 36px 46px;
+  grid-gap: 0;
+}
