@@ -1,5 +1,5 @@
 .content {
-  margin: 0 auto;
+  scroll-behavior: smooth;
 }
 
 /* @media all and (min-width: 768px) {

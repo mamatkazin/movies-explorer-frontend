@@ -1,10 +1,10 @@
-import React from "react";
-import { Redirect } from "react-router-dom";
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 export default function Logout({ onSignOut }) {
   React.useEffect(() => {
     onSignOut();
   });
 
-  return <Redirect to="/signin" />;
+  return <Redirect to='/signin' />;
 }

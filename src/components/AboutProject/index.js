@@ -5,7 +5,10 @@ import './index.css';
 
 function AboutProject(props) {
   return (
-    <section id='aboutProject' className='about-project page__about-project page__content'>
+    <section
+      id='aboutProject'
+      className='about-project page__about-project page__content'
+    >
       <HeaderSection title='О проекте' className='about-project__header' />
       <div className='about-project__blocks'>
         <TextBlockSection title='Дипломный проект включал 5 этапов'>

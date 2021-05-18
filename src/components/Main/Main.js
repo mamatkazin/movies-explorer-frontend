@@ -5,6 +5,7 @@ import NavTab from '../NavTab/NavTab';
 import AboutProject from '../AboutProject';
 import Techs from '../Techs';
 import AboutMe from '../AboutMe';
+import Footer from '../Footer';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -16,9 +17,12 @@ function Main(props) {
       <Header loggedIn={props.loggedIn}></Header>
       <Banner></Banner>
       <NavTab></NavTab>
-      <AboutProject />
-      <Techs />
-      <AboutMe />
+      <main className='content'>
+        <AboutProject />
+        <Techs />
+        <AboutMe />
+      </main>
+      <Footer />
     </>
     // <main className="content">
     //   <section className="profile content__profile">
