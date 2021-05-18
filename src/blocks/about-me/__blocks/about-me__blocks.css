@@ -1,0 +1,6 @@
+.about-me__blocks{
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  margin-bottom: 100px;
+}

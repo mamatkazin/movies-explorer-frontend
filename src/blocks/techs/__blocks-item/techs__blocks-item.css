@@ -1,0 +1,10 @@
+.techs__blocks-item{
+  background-color: #E8E8E8;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: -0.04em;
+}

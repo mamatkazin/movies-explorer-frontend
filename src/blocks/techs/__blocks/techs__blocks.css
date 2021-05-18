@@ -1,0 +1,11 @@
+.techs__blocks{
+  display: grid;
+  grid-template-columns: repeat(7, 90px);
+  grid-template-rows: 60px;
+  grid-gap: 10px;
+  justify-content: center;
+  align-content: center;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+}

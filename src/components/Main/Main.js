@@ -3,6 +3,8 @@ import Header from '../Header/Header';
 import Banner from '../Banner/Banner';
 import NavTab from '../NavTab/NavTab';
 import AboutProject from '../AboutProject';
+import Techs from '../Techs';
+import AboutMe from '../AboutMe';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -15,6 +17,8 @@ function Main(props) {
       <Banner></Banner>
       <NavTab></NavTab>
       <AboutProject />
+      <Techs />
+      <AboutMe />
     </>
     // <main className="content">
     //   <section className="profile content__profile">

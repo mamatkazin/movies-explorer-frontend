@@ -1,0 +1,10 @@
+.about-me__social-item{
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  margin-right: 20px;
+}
+
+.about-me__social-item:nth-last-child(1){
+  margin-right: 0;
+}
