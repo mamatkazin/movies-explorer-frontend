@@ -8,7 +8,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 // import { ShowError, HTTPError } from "./Error";
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Login from '../Login/Login';
-import Register from '../Register/Register';
+import Register from '../Register';
 // import Page from "./Page";
 import Main from '../Main/Main';
 import Logout from '../Logout/Logout';
@@ -56,10 +56,17 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
+      {console.log('@@@@1@@@@', loggedIn)}
       <div className='page'>
         <Switch>
+          <Route exact path='/'>
+            {loggedIn ? (
+              <Redirect to='/movies' />
+            ) : (
+              <Main loggedIn={loggedIn} />
+            )}
+          </Route>
           <ProtectedRoute
-            exact
             path='/movies'
             loggedIn={loggedIn}
             // component={Page}
@@ -72,13 +79,6 @@ function App() {
             // onCardLike={handleCardLike}
             // onCardDelete={handleCardDelete}
           />
-          <Route path='/'>
-            {loggedIn ? (
-              <Redirect to='/movies' />
-            ) : (
-              <Main loggedIn={loggedIn} />
-            )}
-          </Route>
           <Route path='/signin'>
             {loggedIn ? (
               <Redirect to='/movies' />

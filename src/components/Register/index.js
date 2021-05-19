@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../Header/Header';
 import BaseForm from '../BaseForm/BaseForm';
 
 export default function Register({ onRegister }) {
@@ -32,7 +31,7 @@ export default function Register({ onRegister }) {
 
     onRegister(name, email, password).then((needClear) => {
       if (needClear) {
-        setName('')
+        setName('');
         setEmail('');
         setPassword('');
         setButtonDisabled(true);
@@ -54,7 +53,9 @@ export default function Register({ onRegister }) {
       onEmailChange={handleEmailChange}
       onPasswordChange={handlePasswordChange}
     >
-      <p>Уже зарегистрированы?
+      {console.log('@@@@@@@@')}
+      <p>
+        Уже зарегистрированы?
         <Link to='/signin' className='register__link'>
           Войти
         </Link>
