@@ -4,15 +4,20 @@ import Header from '../Header/Header';
 import BaseForm from '../BaseForm/BaseForm';
 
 export default function Register({ onRegister }) {
+  const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
 
   React.useEffect(() => {
     setButtonDisabled(
-      [email, password].findIndex((item) => item === '') !== -1
+      [name, email, password].findIndex((item) => item === '') !== -1
     );
-  }, [email, password]);
+  }, [name, email, password]);
+
+  function handleNameChange(e) {
+    setName(e.target.value);
+  }
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -25,8 +30,9 @@ export default function Register({ onRegister }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    onRegister(email, password).then((needClear) => {
+    onRegister(name, email, password).then((needClear) => {
       if (needClear) {
+        setName('')
         setEmail('');
         setPassword('');
         setButtonDisabled(true);
@@ -35,27 +41,24 @@ export default function Register({ onRegister }) {
   }
 
   return (
-    <div className='page page_unknown'>
-      <Header>
-        <Link to='/signin' className='header__action'>
+    <BaseForm
+      form='register'
+      title='Регистрация'
+      name={name}
+      email={email}
+      password={password}
+      buttonName='Зарегистрироваться'
+      buttonDisabled={buttonDisabled}
+      onSubmit={handleSubmit}
+      onNameChange={handleNameChange}
+      onEmailChange={handleEmailChange}
+      onPasswordChange={handlePasswordChange}
+    >
+      <p>Уже зарегистрированы?
+        <Link to='/signin' className='register__link'>
           Войти
         </Link>
-      </Header>
-      <BaseForm
-        name='register'
-        title='Регистрация'
-        email={email}
-        password={password}
-        buttonName='Зарегистрироваться'
-        buttonDisabled={buttonDisabled}
-        onSubmit={handleSubmit}
-        onEmailChange={handleEmailChange}
-        onPasswordChange={handlePasswordChange}
-      >
-        <Link to='/signin' className='register__link'>
-          Уже зарегистрированы? Войти
-        </Link>
-      </BaseForm>
-    </div>
+      </p>
+    </BaseForm>
   );
 }

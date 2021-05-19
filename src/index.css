@@ -18,6 +18,5 @@
 @import url('./blocks/header-section/header-section.css');
 @import url('./blocks/header-section/__title/header-section__title.css');
 
-@import url('./blocks/text-block-with-title/text-block-with-title.css');
 @import url('./blocks/text-block-with-title/__title/text-block-with-title__title.css');
 @import url('./blocks/text-block-with-title/__text/text-block-with-title__text.css');

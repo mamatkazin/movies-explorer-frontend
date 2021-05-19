@@ -26,12 +26,15 @@ function Header(props) {
             <Link to='/signup' className='page__link header__signup'>
               Регистрация
             </Link>
-            <button
+            <Link to="/signin" className="button button_theme_green header__signin">
+              Войти
+            </Link>
+            {/* <button
               type='button'
               className='button button_theme_green header__signin'
             >
               Войти
-            </button>
+            </button> */}
           </div>
         ) : isMobile ? (
           <>

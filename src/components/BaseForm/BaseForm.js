@@ -1,18 +1,38 @@
 import React from 'react';
+import logo from '../../images/logo.svg';
 
 export default function BaseForm(props) {
   return (
     <section className='base-form'>
+      <img
+        className='logo base-form__logo'
+        src={logo}
+        alt='Логотип дипломного проекта'
+      />
       <form
-        name={`form_${props.name}`}
+        name={`form_${props.form}`}
         className='base-form__container'
         onSubmit={props.onSubmit}
       >
-        <h2 className='base-form__title'>{props.title}</h2>
+        <h1 className='base-form__title'>{props.title}</h1>
         <fieldset className='base-form__input-container' name='dataFields'>
+          {props.isRegistry && (
+            <>
+              <input
+                type='text'
+                className='input'
+                name='name'
+                placeholder='Name'
+                required
+                value={props.name}
+                onChange={props.onNameChange}
+              />
+              <span className='input-error' id='name-error'></span>
+            </>
+          )}
           <input
             type='email'
-            className='input input_theme_dark'
+            className='input'
             name='email'
             placeholder='Email'
             required
@@ -22,7 +42,7 @@ export default function BaseForm(props) {
           <span className='input-error' id='email-error'></span>
           <input
             type='password'
-            className='input input_theme_dark'
+            className='input'
             name='password'
             placeholder='Пароль'
             required
@@ -36,15 +56,16 @@ export default function BaseForm(props) {
           type='submit'
           className={
             props.buttonDisabled
-              ? 'button button_theme_white base-form__button button_disabled'
-              : 'button button_theme_white base-form__button'
+              ? 'button base-form__button button_disabled'
+              : 'button base-form__button'
           }
           disabled={props.buttonDisabled ? true : false}
         >
           {props.buttonName}
         </button>
-        {props.children}
       </form>
+
+      {props.children}
     </section>
   );
 }
