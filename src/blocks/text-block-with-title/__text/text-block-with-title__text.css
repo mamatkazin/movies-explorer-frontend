@@ -1,5 +1,22 @@
 .text-block-with-title__text {
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 11px;
+  line-height: 16px;
   margin: 0;
+  min-height: 48px;
+}
+
+@media all and (min-width: 768px) {
+  .text-block-with-title__text {
+    font-size: 12px;
+    line-height: 18px;
+    min-height: 54px;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .text-block-with-title__text {
+    font-size: 14px;
+    line-height: 20px;
+    min-height: inherit;
+  }
 }

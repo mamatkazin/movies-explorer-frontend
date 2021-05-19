@@ -5,7 +5,7 @@ import './index.css';
 function Footer(props) {
   return (
     <footer className='footer'>
-      <div className='page__content page__footer'>
+      <div className='page__footer'>
         <p className='footer__text'>
           Учебный проект Яндекс.Практикум х BeatFilm.
         </p>

@@ -1,3 +1,15 @@
 .techs__header{
-  margin-bottom: 90px;
+  margin-bottom: 60px;
+}
+
+@media all and (min-width: 768px) {
+  .techs__header{
+    margin-bottom: 80px;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .techs__header{
+    margin-bottom: 90px;
+  }
 }

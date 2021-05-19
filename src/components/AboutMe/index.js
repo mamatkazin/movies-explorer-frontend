@@ -1,13 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 import HeaderSection from '../HeaderSection';
 import student from '../../images/student.png';
 import './index.css';
 
 function AboutMe(props) {
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+
+  if (isMobile) {
+
+  }
+
   return (
     <section id='aboutMe' className='about-me'>
-      <div className='page__content page__about-me'>
+      <div className={isMobile ? ('page__content page__content_width_s page__about-me') : ('page__content page__about-me')}>
         <HeaderSection title='Студент' className='about-me__header' />
         <div className='about-me__blocks'>
           <div className='about-me__blocks-item'>

@@ -1,7 +1,18 @@
 .footer__social-item{
-  margin-right: 20px;
+  margin-bottom: 12px;
 }
 
 .footer__social-item:nth-last-child(1){
-  margin-right: 0;
+  margin-bottom: 0;
+}
+
+@media all and (min-width: 768px) {
+  .footer__social-item{
+    margin-right: 20px;
+    margin-bottom: 0;
+  }
+
+  .footer__social-item:nth-last-child(1){
+    margin-right: 0;
+  }
 }

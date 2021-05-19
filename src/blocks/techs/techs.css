@@ -1,4 +1,11 @@
 .techs{
-  background-color: #F5F5F5;
-  border: 1px solid #F5F5F5;
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+
+@media all and (min-width: 768px) {
+  .techs{
+    background-color: #F5F5F5;
+    border: 1px solid #F5F5F5;
+  }
 }

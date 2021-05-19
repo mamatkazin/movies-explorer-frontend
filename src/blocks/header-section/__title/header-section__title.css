@@ -1,8 +1,16 @@
 .header-section__title {
   margin: 0;
   font-weight: normal;
-  font-size: 22px;
-  line-height: 27px;
+  font-size: 18px;
+  line-height: 22px;
   letter-spacing: -0.04em;
-  margin-bottom: 23px;
+  margin-bottom: 27px;
+}
+
+@media all and (min-width: 768px) {
+  .header-section__title {
+    font-size: 22px;
+    line-height: 27px;
+    margin-bottom: 23px;
+  }
 }

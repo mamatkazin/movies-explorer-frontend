@@ -1,12 +1,12 @@
 .page__content {
-  max-width: calc(100% - 28px);
+  max-width: calc(100% - 36px);
   /* width: 100%;
   margin: 0 auto; */
 }
 
 @media all and (min-width: 768px) {
   .page__content {
-    max-width: calc(100% - 60px);
+    max-width: calc(100% - 100px);
   }
 }
 

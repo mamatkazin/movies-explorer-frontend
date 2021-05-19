@@ -1,3 +1,9 @@
 .about-project__header {
-  margin-bottom: 70px;
+  margin-bottom: 61px;
+}
+
+@media all and (min-width: 768px) {
+  .about-project__header {
+    margin-bottom: 70px;
+  }
 }

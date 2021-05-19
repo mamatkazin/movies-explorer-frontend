@@ -15,7 +15,7 @@ function Header(props) {
 
   return (
     <header className='header'>
-      <div className='header__content page__content'>
+      <div className='header__content page__header'>
         <img
           className='logo header__logo'
           src={logo}

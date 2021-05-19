@@ -1,3 +1,15 @@
 .page__techs{
-  margin: 99px auto;
+  margin: 60px auto 70px;
+}
+
+@media all and (min-width: 768px) {
+  .page__techs{
+    margin: 90px auto;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .page__techs{
+    margin: 99px auto;
+  }
 }
