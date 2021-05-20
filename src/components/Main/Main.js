@@ -13,7 +13,7 @@ function Main(props) {
   const currentUser = React.useContext(CurrentUserContext);
 
   return (
-    <>
+    <div className='page'>
       <Header loggedIn={props.loggedIn}></Header>
       <Banner></Banner>
       <NavTab></NavTab>
@@ -23,7 +23,7 @@ function Main(props) {
         <AboutMe />
       </main>
       <Footer />
-    </>
+    </div>
     // <main className="content">
     //   <section className="profile content__profile">
     //     <button

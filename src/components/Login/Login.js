@@ -1,17 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Header from '../Header/Header';
-import BaseForm from '../BaseForm/BaseForm';
+import React from "react";
+import { Link } from "react-router-dom";
+import BaseForm from "../BaseForm";
 
 export default function Login({ onLogin }) {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
 
   React.useEffect(() => {
-    setButtonDisabled(
-      [email, password].findIndex((item) => item === '') !== -1
-    );
+    setButtonDisabled([email, password].findIndex((item) => item === "") !== -1);
   }, [email, password]);
 
   function handleEmailChange(e) {
@@ -25,33 +22,37 @@ export default function Login({ onLogin }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    onLogin(email, password).then((needClear) => {
-      if (needClear) {
-        setEmail('');
-        setPassword('');
-        setButtonDisabled(true);
-      }
-    });
+    onLogin(email, password);
+
+    // onLogin(email, password).then((needClear) => {
+    //   if (needClear) {
+    //     setEmail("");
+    //     setPassword("");
+    //     setButtonDisabled(true);
+    //   }
+    // });
   }
 
   return (
-    <div className='page page_unknown'>
-      <Header>
-        <Link to='/signup' className='header__action'>
+    <BaseForm
+      form="login"
+      isRegistry={false}
+      title="Рады видеть!"
+      email={email}
+      password={password}
+      buttonName="Войти"
+      buttonDisabled={false}
+      // buttonDisabled={buttonDisabled}
+      onSubmit={handleSubmit}
+      onEmailChange={handleEmailChange}
+      onPasswordChange={handlePasswordChange}
+    >
+      <p className="base-form__text">
+        Ещё не зарегистрированы?
+        <Link to="/signup" className="page__link base-form__link">
           Регистрация
         </Link>
-      </Header>
-      <BaseForm
-        name='login'
-        title='Вход'
-        email={email}
-        password={password}
-        buttonName='Войти'
-        buttonDisabled={buttonDisabled}
-        onSubmit={handleSubmit}
-        onEmailChange={handleEmailChange}
-        onPasswordChange={handlePasswordChange}
-      />
-    </div>
+      </p>
+    </BaseForm>
   );
 }
