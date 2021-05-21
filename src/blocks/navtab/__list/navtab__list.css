@@ -1,8 +1,8 @@
 .navtab__list {
-  list-style: none;
-  margin: 0 auto;
+  /* list-style: none;
   padding: 0;
-  display: flex;
+  display: flex; */
+  margin: 0 auto;
   align-items: center;
   justify-content: center;
   min-height: 66px;

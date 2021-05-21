@@ -9,7 +9,9 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Login from "../Login/Login";
 import Register from "../Register";
-// import Page from "./Page";
+import Movies from "../Movies";
+import SavedMovies from "../SavedMovies";
+import Profile from "../Profile";
 import Main from "../Main/Main";
 import Logout from "../Logout/Logout";
 // import InfoTooltip from "./InfoTooltip";
@@ -68,7 +70,33 @@ function App() {
         <ProtectedRoute
           path="/movies"
           loggedIn={loggedIn}
-          // component={Page}
+          component={Movies}
+          // cards={cards}
+          // email={email}
+          // onEditProfile={handleEditProfileClick}
+          // onAddPlace={handleAddPlaceClick}
+          // onEditAvatar={handleEditAvatarClick}
+          // onCardClick={handleCardClick}
+          // onCardLike={handleCardLike}
+          // onCardDelete={handleCardDelete}
+        />
+        <ProtectedRoute
+          path="/saved-movies"
+          loggedIn={loggedIn}
+          component={SavedMovies}
+          // cards={cards}
+          // email={email}
+          // onEditProfile={handleEditProfileClick}
+          // onAddPlace={handleAddPlaceClick}
+          // onEditAvatar={handleEditAvatarClick}
+          // onCardClick={handleCardClick}
+          // onCardLike={handleCardLike}
+          // onCardDelete={handleCardDelete}
+        />
+        <ProtectedRoute
+          path="/profile"
+          loggedIn={loggedIn}
+          component={Profile}
           // cards={cards}
           // email={email}
           // onEditProfile={handleEditProfileClick}

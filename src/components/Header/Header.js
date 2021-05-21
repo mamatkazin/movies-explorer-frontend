@@ -19,18 +19,14 @@ function Header(props) {
         <img className="logo header__logo" src={logo} alt="Логотип дипломного проекта" />
         {!props.loggedIn ? (
           <div className="header__auth">
-            <Link to="/signup" className="page__link header__signup">
+            <Link to="/signup" className="page__link page__link_color_white header__signup">
               Регистрация
             </Link>
-            <Link to="/signin" className="button button_theme_green header__signin">
-              Войти
-            </Link>
-            {/* <button
-              type='button'
-              className='button button_theme_green header__signin'
-            >
-              Войти
-            </button> */}
+            <button type="button" className="button button_theme_green header__signin">
+              <Link to="/signin" className="page__link page__link_color_black">
+                Войти
+              </Link>
+            </button>
           </div>
         ) : isMobile ? (
           <>
@@ -54,9 +50,25 @@ function Header(props) {
             </div>
           </>
         ) : (
-          <>
-            <div className="header__variable">{props.children}</div>
-          </>
+          <nav className="nav header__nav">
+            <ul className="nav__list">
+              <li className="header__nav-item">
+                <Link to="/movies" className="page__link page__link_color_white">
+                  Фильмы
+                </Link>
+              </li>
+              <li className="header__nav-item">
+                <Link to="/saved-movies" className="page__link page__link_color_white">
+                  Сохранённые фильмы
+                </Link>
+              </li>
+            </ul>
+            <button className="account button">
+              <Link to="/profile" className="page__link page__link_color_white account__link">
+                Аккаунт
+              </Link>
+            </button>
+          </nav>
         )}
       </div>
     </header>
