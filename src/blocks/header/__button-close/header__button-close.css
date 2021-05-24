@@ -1,0 +1,7 @@
+.header__button-close{
+  background-image: url(../../../images/close.svg);
+  width: 31px;
+  height: 31px;
+  align-self: flex-end;
+  margin: 20px 20px 105px 0;
+}

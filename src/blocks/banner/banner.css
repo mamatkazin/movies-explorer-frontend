@@ -1,28 +1,30 @@
 .banner{
   min-height: 570px;
-  background-color: #073042;
+  /* background-color: #073042; */
   display: flex;
   align-items: center;
-  position: relative;
+  /* position: relative; */
+  background: no-repeat url(../../images/emblem320.svg) 50% 40% #073042;
 }
 
-.banner::before{
+/* .banner::before{
     content: url(../../images/emblem320.svg);
     position: absolute;
     left: calc(50% - 124px);
     top: calc(46% - 122px);
-  }
+  } */
 
 @media all and (min-width: 768px) {
   .banner{
     min-height: 784px;
+    background: no-repeat url(../../images/emblem.svg) 50% 40% #073042;
   }
 
-  .banner::before{
+  /* .banner::before{
     content: url(../../images/emblem.svg);
     left: calc(50% - 160px);
     top: calc(49% - 160px);
-  }
+  } */
 }
 
 @media all and (min-width: 1024px) {
@@ -30,8 +32,8 @@
     min-height: 524px;
   }
 
-  .banner::before{
+  /* .banner::before{
     top: calc(46% - 160px);
-  }
+  } */
 }
 

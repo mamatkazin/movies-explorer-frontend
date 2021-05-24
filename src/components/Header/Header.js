@@ -1,11 +1,43 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import logo from "../../images/logo.svg";
+import { Link, useLocation } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
+import logo from "../../images/logo.svg";
 import "./Header.css";
 
 function Header(props) {
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
+  const location = useLocation();
+  console.log((location.pathname = "/"));
+  console.log("#####", location.pathname === "/");
+
+  const [main, setMain] = React.useState("");
+  const [movies, setMovies] = React.useState("");
+  const [savedMovies, setSavedMovies] = React.useState("");
+
+  React.useEffect(() => {
+    switch (location.pathname) {
+      case "/":
+        setMain("header__nav-item_actived");
+        setMovies("");
+        setSavedMovies("");
+        break;
+      case "/movies":
+        setMain("");
+        setMovies("header__nav-item_actived");
+        setSavedMovies("");
+        break;
+      case "/saved-movies":
+        setMain("");
+        setMovies("");
+        setSavedMovies("header__nav-item_actived");
+        break;
+      default:
+        setMain("");
+        setMovies("");
+        setSavedMovies("");
+        break;
+    }
+  }, [location]);
 
   const [menuOpened, setMenuOpened] = React.useState(false);
 
@@ -14,8 +46,14 @@ function Header(props) {
   }
 
   return (
-    <header className="header header_theme_dark">
-      <div className="header__content page__header">
+    <header className={`header header_theme_${props.themeColor}`}>
+      <div
+        className={
+          props.loggedIn && !isMobile
+            ? "header__content page__header header__content_justify_start"
+            : "header__content page__header"
+        }
+      >
         <img className="logo header__logo" src={logo} alt="Логотип дипломного проекта" />
         {!props.loggedIn ? (
           <div className="header__auth">
@@ -28,47 +66,81 @@ function Header(props) {
               </Link>
             </button>
           </div>
-        ) : isMobile ? (
-          <>
-            <div
-              className={
-                menuOpened ? "header__variable header__variable_opened" : "header__variable"
-              }
-            >
-              {props.children}
-            </div>
-            <div className="header__appbar">
-              <img className="logo header__logo" src={logo} alt="Логотип" />
-              <button
-                className={
-                  menuOpened
-                    ? "button button-close header__menu"
-                    : "button button-menu header__menu"
-                }
-                onClick={headerMenuClick}
-              ></button>
-            </div>
-          </>
         ) : (
-          <nav className="nav header__nav">
-            <ul className="nav__list">
-              <li className="header__nav-item">
-                <Link to="/movies" className="page__link page__link_color_white">
-                  Фильмы
-                </Link>
-              </li>
-              <li className="header__nav-item">
-                <Link to="/saved-movies" className="page__link page__link_color_white">
-                  Сохранённые фильмы
-                </Link>
-              </li>
-            </ul>
-            <button className="account button">
-              <Link to="/profile" className="page__link page__link_color_white account__link">
-                Аккаунт
-              </Link>
-            </button>
-          </nav>
+          <div
+            className={isMobile && menuOpened ? "header__menu header__menu_opened" : "header__menu"}
+          >
+            {isMobile && (
+              <>
+                {menuOpened ? (
+                  <button
+                    className="button header__button-close"
+                    onClick={headerMenuClick}
+                  ></button>
+                ) : (
+                  <button
+                    className="button header__button-menu header__button-menu_theme_dark"
+                    onClick={headerMenuClick}
+                  ></button>
+                )}
+              </>
+            )}
+            {(!isMobile || menuOpened) && (
+              <nav className="nav header__nav">
+                <ul
+                  className={
+                    isMobile
+                      ? "nav__list nav__list_direction_column nav__list_align-items_center"
+                      : "nav__list"
+                  }
+                >
+                  {isMobile && (
+                    <li className="header__nav-item">
+                      <Link to="/" className={`page__link page__link_color_black ${main}`}>
+                        Главная
+                      </Link>
+                    </li>
+                  )}
+                  <li className="header__nav-item">
+                    <Link
+                      to="/movies"
+                      className={
+                        isMobile
+                          ? `page__link page__link_color_black ${movies}`
+                          : `page__link page__link_color_white ${movies}`
+                      }
+                    >
+                      Фильмы
+                    </Link>
+                  </li>
+                  <li className="header__nav-item">
+                    <Link
+                      to="/saved-movies"
+                      className={
+                        isMobile
+                          ? `page__link page__link_color_black ${savedMovies}`
+                          : `page__link page__link_color_white ${savedMovies}`
+                      }
+                    >
+                      Сохранённые фильмы
+                    </Link>
+                  </li>
+                </ul>
+                <button className="account button">
+                  <Link
+                    to="/profile"
+                    className={
+                      isMobile
+                        ? "page__link page__link_color_black account__link"
+                        : "page__link page__link_color_white account__link"
+                    }
+                  >
+                    Аккаунт
+                  </Link>
+                </button>
+              </nav>
+            )}
+          </div>
         )}
       </div>
     </header>
