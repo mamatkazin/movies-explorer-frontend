@@ -9,7 +9,7 @@ function MoviesCard(props) {
   // }
 
   function handleLikeClick() {
-    props.onCardLike(props.card);
+    // props.onCardLike(props.card);
   }
 
   function getTimeFromMins(mins) {
@@ -19,31 +19,34 @@ function MoviesCard(props) {
   }
 
   return (
-    <li className="card">
-      <img
-        className="card__image"
-        src={baseUrl + props.card.image.url}
-        alt={props.card.nameRU}
-        // onClick={handleCardClick}
-      />
-      <div className="card__row">
-        <h2 className="card__name">{props.card.nameRU}</h2>
-        <div className="button-like">
-          <button
-            type="button"
-            aria-label="Поставить лайк."
-            className="button button-like__image"
-            // {
-            //   props.card.likes.findIndex((item) => item === currentUser.userId) !== -1
-            //     ? "button button-like__image button-like__image_liked"
-            //     : "button button-like__image"
-            // }
-            onClick={handleLikeClick}
-          ></button>
+    <>
+      {console.log("@@@@", baseUrl, props.card.image)}
+      <li className="card">
+        <img
+          className="card__image"
+          src={props.card.image ? baseUrl + props.card.image.url : "#"}
+          alt={props.card.nameRU}
+          // onClick={handleCardClick}
+        />
+        <div className="card__row">
+          <h2 className="card__name">{props.card.nameRU}</h2>
+          <div className="button-like">
+            <button
+              type="button"
+              aria-label="Поставить лайк."
+              className="button button-like__image"
+              // {
+              //   props.card.likes.findIndex((item) => item === currentUser.userId) !== -1
+              //     ? "button button-like__image button-like__image_liked"
+              //     : "button button-like__image"
+              // }
+              onClick={handleLikeClick}
+            ></button>
+          </div>
         </div>
-      </div>
-      <div className="card__duration">{getTimeFromMins(props.card.duration)}</div>
-    </li>
+        <div className="card__duration">{getTimeFromMins(props.card.duration)}</div>
+      </li>
+    </>
   );
 }
 

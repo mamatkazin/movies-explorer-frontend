@@ -11,7 +11,12 @@ function Movies(props) {
       <Header loggedIn={props.loggedIn} themeColor="light"></Header>
       <main className="content page__content">
         <SearchForm />
-        <MoviesCardList cards={props.cards} />
+        <MoviesCardList
+          cards={props.cards}
+          // onCardClick={props.onCardClick}
+          onCardLike={props.onCardLike}
+          onCardDelete={props.onCardDelete}
+        />
       </main>
       <Footer />
     </div>

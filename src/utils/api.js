@@ -125,7 +125,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: baseUrl,
+  baseUrl: baseUrl + "/beatfilm-movies",
   // baseUrl: "https://api.mamatkazin.nomoredomains.icu/",
   // baseUrl: "http://172.20.12.52:4000/",
   headers: {

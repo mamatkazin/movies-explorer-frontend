@@ -105,7 +105,7 @@ function Header(props) {
                     <Link
                       to="/movies"
                       className={
-                        isMobile
+                        isMobile || props.themeColor === "light"
                           ? `page__link page__link_color_black ${movies}`
                           : `page__link page__link_color_white ${movies}`
                       }
@@ -117,7 +117,7 @@ function Header(props) {
                     <Link
                       to="/saved-movies"
                       className={
-                        isMobile
+                        isMobile || props.themeColor === "light"
                           ? `page__link page__link_color_black ${savedMovies}`
                           : `page__link page__link_color_white ${savedMovies}`
                       }
@@ -130,7 +130,7 @@ function Header(props) {
                   <Link
                     to="/profile"
                     className={
-                      isMobile
+                      isMobile || props.themeColor === "light"
                         ? "page__link page__link_color_black account__link"
                         : "page__link page__link_color_white account__link"
                     }
