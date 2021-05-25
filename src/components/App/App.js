@@ -5,7 +5,8 @@ import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 // import AddPlacePopup from "./AddPlacePopup";
 // import ImagePopup from "./ImagePopup";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-// import { ShowError, HTTPError } from "./Error";
+import { ShowError, HTTPError } from "../Error";
+import api from "../../utils/api";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Login from "../Login/Login";
 import Register from "../Register";
@@ -25,8 +26,9 @@ function App() {
     email: "",
     _id: "",
   });
-
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [err, setErr] = React.useState(null);
+  const [movies, setMovies] = React.useState([]);
 
   React.useEffect(() => {
     setCurrentUser({
@@ -35,6 +37,23 @@ function App() {
       _id: "111111111111111111",
     });
   }, [loggedIn, history]);
+
+  React.useEffect(() => {
+    if (loggedIn) {
+      api
+        .getMovies()
+        .then((data) => {
+          setMovies(data);
+          console.log(data);
+        })
+        .catch((error) => {
+          setErr({
+            code: error instanceof HTTPError ? error.code : "Непредвиденная ошибка",
+            text: error.message,
+          });
+        });
+    }
+  }, [loggedIn]);
 
   function handleRegister(name, email, password) {
     history.push("/signin");
@@ -71,7 +90,7 @@ function App() {
           path="/movies"
           loggedIn={loggedIn}
           component={Movies}
-          // cards={cards}
+          cards={movies}
           // email={email}
           // onEditProfile={handleEditProfileClick}
           // onAddPlace={handleAddPlaceClick}
