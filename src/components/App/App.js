@@ -1,30 +1,30 @@
-import React from "react";
-import { Route, Switch, Redirect, useHistory } from "react-router-dom";
+import React from 'react';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 // import EditProfilePopup from "./EditProfilePopup";
 // import EditAvatarPopup from "./EditAvatarPopup";
 // import AddPlacePopup from "./AddPlacePopup";
 // import ImagePopup from "./ImagePopup";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { ShowError, HTTPError } from "../Error";
-import api from "../../utils/api";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import Login from "../Login/Login";
-import Register from "../Register";
-import Movies from "../Movies";
-import SavedMovies from "../SavedMovies";
-import Profile from "../Profile";
-import Main from "../Main/Main";
-import Logout from "../Logout/Logout";
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { ShowError, HTTPError } from '../Error';
+import api from '../../utils/api';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Login from '../Login/Login';
+import Register from '../Register';
+import Movies from '../Movies';
+import SavedMovies from '../SavedMovies';
+import Profile from '../Profile';
+import Main from '../Main/Main';
+import Logout from '../Logout/Logout';
 // import InfoTooltip from "./InfoTooltip";
-import "./App.css";
+import './App.css';
 
 function App() {
   const history = useHistory();
 
   const [currentUser, setCurrentUser] = React.useState({
-    name: "",
-    email: "",
-    _id: "",
+    name: '',
+    email: '',
+    _id: '',
   });
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [err, setErr] = React.useState(null);
@@ -32,9 +32,9 @@ function App() {
 
   React.useEffect(() => {
     setCurrentUser({
-      name: "Маматказин И.А.",
-      email: "mamatkazin@mail.ru",
-      _id: "111111111111111111",
+      name: 'Маматказин И.А.',
+      email: 'mamatkazin@mail.ru',
+      _id: '111111111111111111',
     });
   }, [loggedIn, history]);
 
@@ -48,7 +48,8 @@ function App() {
         })
         .catch((error) => {
           setErr({
-            code: error instanceof HTTPError ? error.code : "Непредвиденная ошибка",
+            code:
+              error instanceof HTTPError ? error.code : 'Непредвиденная ошибка',
             text: error.message,
           });
         });
@@ -56,21 +57,21 @@ function App() {
   }, [loggedIn]);
 
   function handleRegister(name, email, password) {
-    history.push("/signin");
+    history.push('/signin');
 
     return true;
   }
 
   function handleLogin(email, password) {
     setLoggedIn(true);
-    history.push("/");
+    history.push('/');
 
     return true;
   }
 
   function handleSignOut() {
     setLoggedIn(false);
-    history.push("/signin");
+    history.push('/signin');
 
     return true;
   }
@@ -78,7 +79,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Switch>
-        <Route exact path="/">
+        <Route exact path='/'>
           {/* {loggedIn ? (
             <Redirect to='/movies' />
           ) : (
@@ -87,7 +88,7 @@ function App() {
           <Main loggedIn={loggedIn} />
         </Route>
         <ProtectedRoute
-          path="/movies"
+          path='/movies'
           loggedIn={loggedIn}
           component={Movies}
           cards={movies}
@@ -100,10 +101,10 @@ function App() {
           // onCardDelete={handleCardDelete}
         />
         <ProtectedRoute
-          path="/saved-movies"
+          path='/saved-movies'
           loggedIn={loggedIn}
           component={SavedMovies}
-          // cards={cards}
+          cards={movies}
           // email={email}
           // onEditProfile={handleEditProfileClick}
           // onAddPlace={handleAddPlaceClick}
@@ -113,7 +114,7 @@ function App() {
           // onCardDelete={handleCardDelete}
         />
         <ProtectedRoute
-          path="/profile"
+          path='/profile'
           loggedIn={loggedIn}
           component={Profile}
           // cards={cards}
@@ -125,14 +126,24 @@ function App() {
           // onCardLike={handleCardLike}
           // onCardDelete={handleCardDelete}
         />
-        <Route path="/signin">
-          {loggedIn ? <Redirect to="/movies" /> : <Login onLogin={handleLogin} />}
+        <Route path='/signin'>
+          {loggedIn ? (
+            <Redirect to='/movies' />
+          ) : (
+            <Login onLogin={handleLogin} />
+          )}
         </Route>
-        <Route path="/signup">
-          {loggedIn ? <Redirect to="/movies" /> : <Register onRegister={handleRegister} />}
+        <Route path='/signup'>
+          {loggedIn ? (
+            <Redirect to='/movies' />
+          ) : (
+            <Register onRegister={handleRegister} />
+          )}
         </Route>
-        <Route path="/signout">{<Logout onSignOut={handleSignOut} />}</Route>
-        <Route>{loggedIn ? <Redirect to="/movies" /> : <Redirect to="/signin" />}</Route>
+        <Route path='/signout'>{<Logout onSignOut={handleSignOut} />}</Route>
+        <Route>
+          {loggedIn ? <Redirect to='/movies' /> : <Redirect to='/signin' />}
+        </Route>
       </Switch>
 
       {/* <EditProfilePopup
