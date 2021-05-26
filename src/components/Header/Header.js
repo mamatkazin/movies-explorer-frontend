@@ -7,14 +7,13 @@ import "./Header.css";
 function Header(props) {
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
   const location = useLocation();
-  console.log((location.pathname = "/"));
-  console.log("#####", location.pathname === "/");
 
   const [main, setMain] = React.useState("");
   const [movies, setMovies] = React.useState("");
   const [savedMovies, setSavedMovies] = React.useState("");
 
   React.useEffect(() => {
+    console.log("##1111##", location.pathname);
     switch (location.pathname) {
       case "/":
         setMain("header__nav-item_actived");
@@ -47,6 +46,9 @@ function Header(props) {
 
   return (
     <header className={`header header_theme_${props.themeColor}`}>
+      {console.log("@@@@1", main)}
+      {console.log("@@@@2", movies)}
+      {console.log("@@@@3", savedMovies)}
       <div
         className={
           props.loggedIn && !isMobile

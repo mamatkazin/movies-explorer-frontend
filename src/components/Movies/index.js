@@ -9,7 +9,7 @@ function Movies(props) {
   return (
     <div className="page">
       <Header loggedIn={props.loggedIn} themeColor="light"></Header>
-      <main className="content page__content">
+      <main className="content">
         <SearchForm />
         <MoviesCardList
           cards={props.cards}

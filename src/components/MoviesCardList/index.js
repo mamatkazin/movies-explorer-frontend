@@ -4,10 +4,10 @@ import "./index.css";
 
 function MoviesCardList(props) {
   return (
-    <section className="movies">
+    <section className="movies page__content">
       <ul className="movies__list">
         {props.cards.length > 0 &&
-          props.cards.slice(0, 13).map((card, i) => (
+          props.cards.slice(0, 12).map((card, i) => (
             <MoviesCard
               key={card._id}
               card={card}
@@ -17,6 +17,8 @@ function MoviesCardList(props) {
             />
           ))}
       </ul>
+
+      <button className="button movies__button">Ещё</button>
     </section>
   );
 }

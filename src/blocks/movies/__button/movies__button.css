@@ -1,0 +1,11 @@
+.movies__button{
+  background: #F9F9F9;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  height: 36px;
+  width: 320px;
+  display: block;
+  margin: 50px auto 100px;
+}

@@ -1,0 +1,6 @@
+.button-like__image {
+  background: url(../../../images/liked.svg) no-repeat center;
+  width: 10px;
+  height: 8.5px;
+  border: 0;
+}

@@ -21,7 +21,7 @@ function MoviesCard(props) {
   return (
     <>
       {console.log("@@@@", baseUrl, props.card.image)}
-      <li className="card">
+      <li className="card movies__item">
         <img
           className="card__image"
           src={props.card.image ? baseUrl + props.card.image.url : "#"}
@@ -44,7 +44,7 @@ function MoviesCard(props) {
             ></button>
           </div>
         </div>
-        <div className="card__duration">{getTimeFromMins(props.card.duration)}</div>
+        <p className="card__duration">{getTimeFromMins(props.card.duration)}</p>
       </li>
     </>
   );
