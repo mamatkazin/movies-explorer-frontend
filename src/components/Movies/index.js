@@ -13,10 +13,12 @@ function Movies(props) {
         <SearchForm />
         <MoviesCardList
           cards={props.cards}
+          liked={false}
           // onCardClick={props.onCardClick}
           onCardLike={props.onCardLike}
           onCardDelete={props.onCardDelete}
         />
+        <button className="button button-movies">Ещё</button>
       </main>
       <Footer />
     </div>

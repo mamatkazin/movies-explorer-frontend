@@ -34,7 +34,9 @@ function MoviesCard(props) {
             <button
               type="button"
               aria-label="Поставить лайк."
-              className="button button-like__image"
+              className={
+                props.liked ? "button button-like__image card__like" : "button button-like__image"
+              }
               // {
               //   props.card.likes.findIndex((item) => item === currentUser.userId) !== -1
               //     ? "button button-like__image button-like__image_liked"

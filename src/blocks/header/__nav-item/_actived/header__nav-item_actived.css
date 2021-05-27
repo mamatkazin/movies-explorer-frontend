@@ -1,5 +1,6 @@
 .header__nav-item_actived{
-  text-decoration: underline;
+  text-decoration-line: underline;
+  text-underline-offset: 9px;
 }
 
 @media all and (min-width: 768px) {

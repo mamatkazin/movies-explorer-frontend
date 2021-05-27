@@ -11,14 +11,13 @@ function MoviesCardList(props) {
             <MoviesCard
               key={card._id}
               card={card}
+              liked={props.liked}
               // onCardClick={props.onCardClick}
               onCardLike={props.onCardLike}
               onCardDelete={props.onCardDelete}
             />
           ))}
       </ul>
-
-      <button className="button movies__button">Ещё</button>
     </section>
   );
 }

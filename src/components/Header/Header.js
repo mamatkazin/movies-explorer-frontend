@@ -5,7 +5,7 @@ import logo from "../../images/logo.svg";
 import "./Header.css";
 
 function Header(props) {
-  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 1023px)" });
   const location = useLocation();
 
   const [main, setMain] = React.useState("");
@@ -46,9 +46,6 @@ function Header(props) {
 
   return (
     <header className={`header header_theme_${props.themeColor}`}>
-      {console.log("@@@@1", main)}
-      {console.log("@@@@2", movies)}
-      {console.log("@@@@3", savedMovies)}
       <div
         className={
           props.loggedIn && !isMobile
@@ -56,7 +53,9 @@ function Header(props) {
             : "header__content page__header"
         }
       >
-        <img className="logo header__logo" src={logo} alt="Логотип дипломного проекта" />
+        <Link to="/" className="page__link">
+          <img className="logo header__logo" src={logo} alt="Логотип дипломного проекта" />
+        </Link>
         {!props.loggedIn ? (
           <div className="header__auth">
             <Link to="/signup" className="page__link page__link_color_white header__signup">

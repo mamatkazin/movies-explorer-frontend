@@ -1,5 +1,5 @@
 .header__nav-item{
-  margin: 0 0 28px 0;
+  margin: 0 0 25px 0;
   font-weight: 500;
   font-size: 18px;
   line-height: 22px;
@@ -11,9 +11,7 @@
 
 @media all and (min-width: 768px) {
   .header__nav-item{
-    margin: 0 16px 0 0;
-    font-size: 13px;
-    line-height: 18px;
+    margin: 0 0 28px 0;
     font-weight: normal;
   }
 }
