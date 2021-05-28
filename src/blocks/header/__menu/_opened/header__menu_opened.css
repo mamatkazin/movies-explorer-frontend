@@ -15,9 +15,4 @@
   .header__menu_opened {
     min-width: 520px;
   }
-
-  .header__menu_opened::before {
-    content: '';
-    background-color: black;
-  }
 }

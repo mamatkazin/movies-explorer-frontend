@@ -1,3 +1,15 @@
 .page__search{
   margin: 70px 0 118px 0;
 }
+
+@media all and (min-width: 768px) {
+  .page__search{
+    margin: 80px 0 129px 0;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .page__search{
+    margin: 70px 0 118px 0;
+  }
+}

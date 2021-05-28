@@ -20,6 +20,7 @@
 @import url("../../blocks/header/__content/_justify/header__content_justify_start.css");
 @import url("../../blocks/header/__menu/header__menu.css");
 @import url("../../blocks/header/__menu/_opened/header__menu_opened.css");
+@import url("../../blocks/header/__cover/header__cover.css");
 @import url("../../blocks/header/__button-menu/header__button-menu.css");
 @import url("../../blocks/header/__button-menu/_theme/header__button-menu_theme_dark.css");
 @import url("../../blocks/header/__button-menu/_theme/header__button-menu_theme_light.css");

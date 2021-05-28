@@ -21,6 +21,7 @@
   background-color: #ccc;
   -webkit-transition: .4s;
   transition: .4s;
+  z-index: -1;
 }
 
 .switch__slider:before {

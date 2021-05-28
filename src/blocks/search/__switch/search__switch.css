@@ -1,4 +1,15 @@
 .search__switch{
   display: flex;
-  justify-content: start;
+}
+
+@media all and (min-width: 768px) {
+  .search__switch{
+    flex-direction: row-reverse;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .search__switch{
+    flex-direction: row;
+  }
 }

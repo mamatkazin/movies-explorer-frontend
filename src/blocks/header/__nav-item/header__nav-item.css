@@ -15,9 +15,11 @@
     font-weight: normal;
   }
 }
-/* 
+
 @media all and (min-width: 1024px) {
   .header__nav-item{
-    
+    margin: 0 16px 0 0;
+    font-size: 13px;
+    line-height: 18px;
   }
-} */
+}

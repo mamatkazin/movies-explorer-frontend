@@ -46,6 +46,7 @@ function Header(props) {
 
   return (
     <header className={`header header_theme_${props.themeColor}`}>
+      {isMobile && menuOpened && <div className="header__cover"></div>}
       <div
         className={
           props.loggedIn && !isMobile
@@ -71,6 +72,13 @@ function Header(props) {
           <div
             className={isMobile && menuOpened ? "header__menu header__menu_opened" : "header__menu"}
           >
+            {/* <div
+              className={
+                isMobile && menuOpened
+                  ? "header__menu-panel header__menu-panel_opened"
+                  : "header__menu-panel"
+              } */}
+            {/* > */}
             {isMobile && (
               <>
                 {menuOpened ? (
@@ -80,7 +88,11 @@ function Header(props) {
                   ></button>
                 ) : (
                   <button
-                    className="button header__button-menu header__button-menu_theme_dark"
+                    className={
+                      location.pathname === "/"
+                        ? "button header__button-menu header__button-menu_theme_dark"
+                        : "button header__button-menu header__button-menu_theme_light"
+                    }
                     onClick={headerMenuClick}
                   ></button>
                 )}
@@ -142,6 +154,7 @@ function Header(props) {
               </nav>
             )}
           </div>
+          // </div>
         )}
       </div>
     </header>
