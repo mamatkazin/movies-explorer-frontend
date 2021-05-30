@@ -1,7 +1,7 @@
 import { HTTPError } from "../components/Error";
 import { baseUrl } from "./const";
 
-class Api {
+class MoviesApi {
   constructor(options) {
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
@@ -44,17 +44,6 @@ class Api {
   //   }).then(this._getResponseData);
   // }
 
-  // setAvatar(avatar) {
-  //   return fetch(this._baseUrl + "users/me/avatar", {
-  //     method: "PATCH",
-  //     credentials: "include",
-  //     headers: this._headers,
-  //     body: JSON.stringify({
-  //       avatar: avatar,
-  //     }),
-  //   }).then(this._getResponseData);
-  // }
-
   // newCard(name, link) {
   //   return fetch(this._baseUrl + "cards", {
   //     method: "POST",
@@ -90,48 +79,13 @@ class Api {
   //     headers: this._headers,
   //   }).then(this._getResponseData);
   // }
-
-  // signup(email, password) {
-  //   return fetch(this._baseUrl + "signup", {
-  //     method: "POST",
-  //     credentials: "include",
-  //     headers: this._headers,
-  //     body: JSON.stringify({
-  //       email: email,
-  //       password: password,
-  //     }),
-  //   }).then(this._getResponseData);
-  // }
-
-  // signin(email, password) {
-  //   return fetch(this._baseUrl + "signin", {
-  //     headers: this._headers,
-  //     credentials: "include",
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       email: email,
-  //       password: password,
-  //     }),
-  //   }).then(this._getResponseData);
-  // }
-
-  // signout() {
-  //   return fetch(this._baseUrl + "signout", {
-  //     headers: this._headers,
-  //     credentials: "include",
-  //     method: "GET",
-  //   }).then(this._getResponseData);
-  // }
 }
 
-const api = new Api({
-  baseUrl: baseUrl + "/beatfilm-movies",
-  // baseUrl: "https://api.mamatkazin.nomoredomains.icu/",
-  // baseUrl: "http://172.20.12.52:4000/",
+const moviesApi = new MoviesApi({
+  baseUrl: baseUrl + '/beatfilm-movies',
   headers: {
-    // authorization: "8f00d36b-aec0-4f68-9304-edc80987adcb",
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
 
-export default api;
+export default moviesApi;

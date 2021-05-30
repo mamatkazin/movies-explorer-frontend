@@ -2,7 +2,8 @@ import React from 'react';
 import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { ShowError, HTTPError } from '../Error';
-import api from '../../utils/api';
+import mainApi from '../../utils/MainApi';
+import moviesApi from '../../utils/MoviesApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Login from '../Login/Login';
 import Register from '../Register';
@@ -12,11 +13,12 @@ import Profile from '../Profile';
 import Main from '../Main/Main';
 import Logout from '../Logout/Logout';
 import NotFound from '../NotFound';
-// import InfoTooltip from "./InfoTooltip";
+import Preloader from '../Preloader/Preloader';
 import './App.css';
 
 function App() {
   const history = useHistory();
+  const [loading, setLoading] = React.useState(true);
 
   const [currentUser, setCurrentUser] = React.useState({
     name: '',
@@ -37,7 +39,7 @@ function App() {
 
   React.useEffect(() => {
     if (loggedIn) {
-      api
+      moviesApi
         .getMovies()
         .then((data) => {
           setMovies(data);
@@ -54,9 +56,24 @@ function App() {
   }, [loggedIn]);
 
   function handleRegister(name, email, password) {
-    history.push('/signin');
+    return mainApi
+      .signup(name, email, password)
+      .then((data) => {
+        history.push('/signin');
 
-    return true;
+        setErr({ code: 200, text: 'Вы успешно зарегистрировались!' });
+
+        return true;
+      })
+      .catch((error) => {
+        setErr({
+          code:
+            error instanceof HTTPError ? error.code : 'Непредвиденная ошибка',
+          text: error.message,
+        });
+
+        return false;
+      });
   }
 
   function handleLogin(email, password) {
@@ -118,6 +135,7 @@ function App() {
         <Route path='/signout'>{<Logout onSignOut={handleSignOut} />}</Route>
         <Route>{loggedIn ? <NotFound /> : <Redirect to='/signin' />}</Route>
       </Switch>
+      <Preloader />
       <ShowError err={err} />
     </CurrentUserContext.Provider>
   );
