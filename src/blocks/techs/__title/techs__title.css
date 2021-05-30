@@ -1,0 +1,22 @@
+.techs__title{
+  margin: 0 0 24px;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 36px;
+  text-align: center;
+  letter-spacing: -0.04em;
+}
+
+@media all and (min-width: 768px) {
+  .techs__title{
+    margin: 0 0 21px;
+    font-size: 50px;
+    line-height: 58px;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .techs__title{
+    margin: 0 0 26px;
+  }
+}

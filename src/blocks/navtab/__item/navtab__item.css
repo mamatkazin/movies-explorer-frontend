@@ -1,0 +1,9 @@
+.navtab__item:nth-child(2){
+  margin: 0 25px;
+}
+
+@media all and (min-width: 768px) {
+  .navtab__item:nth-child(2){
+    margin: 0 41px;
+  }
+}

@@ -1,0 +1,25 @@
+.header__nav-item{
+  margin: 0 0 25px 0;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.header__nav-item:nth-last-child(1){
+  margin: 0;
+}
+
+@media all and (min-width: 768px) {
+  .header__nav-item{
+    margin: 0 0 28px 0;
+    font-weight: normal;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .header__nav-item{
+    margin: 0 16px 0 0;
+    font-size: 13px;
+    line-height: 18px;
+  }
+}

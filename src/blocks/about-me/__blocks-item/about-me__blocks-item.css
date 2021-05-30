@@ -1,0 +1,21 @@
+.about-me__blocks-item:nth-child(2){
+  margin: 0 auto 41px;
+  max-width: 290px;
+}
+
+@media all and (min-width: 768px) {
+  .about-me__blocks-item:nth-child(1){
+    width: 54%;
+  }
+
+  .about-me__blocks-item:nth-child(2){
+    margin: 0;
+    max-width: 253px;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .about-me__blocks-item:nth-child(2){
+    max-width: 269px;
+  }
+}

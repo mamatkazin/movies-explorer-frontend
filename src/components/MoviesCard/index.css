@@ -1,0 +1,9 @@
+@import url('../../blocks/card/__image/card__image.css');
+@import url('../../blocks/card/__row/card__row.css');
+@import url('../../blocks/card/__name/card__name.css');
+@import url('../../blocks/card/__like/card__like.css');
+@import url('../../blocks/card/__duration/card__duration.css');
+
+@import url('../../blocks/button-like/button-like.css');
+@import url('../../blocks/button-like/__image/button-like__image.css');
+@import url('../../blocks/button-like/__image/_liked/button-like__image_liked.css');
