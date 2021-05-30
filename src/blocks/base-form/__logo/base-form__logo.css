@@ -1,9 +1,0 @@
-.base-form__logo{
-  margin-bottom: 47px;
-}
-
-@media all and (min-width: 768px) {
-  .base-form__logo{
-    margin-bottom: 37px;
-  }
-}

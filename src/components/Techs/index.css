@@ -1,9 +1,0 @@
-@import url('../../blocks/header-section/header-section.css');
-@import url('../../blocks/header-section/__title/header-section__title.css');
-
-@import url('../../blocks/techs/techs.css');
-@import url('../../blocks/techs/__header/techs__header.css');
-@import url('../../blocks/techs/__text/techs__text.css');
-@import url('../../blocks/techs/__title/techs__title.css');
-@import url('../../blocks/techs/__blocks/techs__blocks.css');
-@import url('../../blocks/techs/__blocks-item/techs__blocks-item.css');

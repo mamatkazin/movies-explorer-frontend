@@ -1,9 +1,0 @@
-.about-me__header{
-  margin-bottom: 60px;
-}
-
-@media all and (min-width: 768px) {
-  .about-me__header{
-    margin-bottom: 66px;
-  }
-}

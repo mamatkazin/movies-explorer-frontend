@@ -1,6 +1,0 @@
-.account__link::after{
-  content:url(../../../images/account.svg);
-  position: absolute;
-  right: -4px;
-  top: 0;
-}
