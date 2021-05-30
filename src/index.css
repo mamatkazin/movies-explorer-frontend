@@ -1,6 +1,10 @@
 @import url('./vendor/normalize.css');
 @import url('./vendor/fonts/inter.css');
 
+@import url('./blocks/input/input.css');
+@import url('./blocks/input/_failed/input_failed.css');
+@import url('./blocks/input/_font-weight/input_font-weight_medium.css');
+
 @import url('./blocks/page/page.css');
 @import url('./blocks/page/_unknown/page_unknown.css');
 @import url('./blocks/page/__content/page__content.css');
