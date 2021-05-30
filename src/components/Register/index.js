@@ -1,15 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import BaseForm from "../BaseForm";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import BaseForm from '../BaseForm';
 
 export default function Register({ onRegister }) {
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [name, setName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
 
   React.useEffect(() => {
-    setButtonDisabled([name, email, password].findIndex((item) => item === "") !== -1);
+    setButtonDisabled(
+      [name, email, password].findIndex((item) => item === '') !== -1
+    );
   }, [name, email, password]);
 
   function handleNameChange(e) {
@@ -28,6 +30,7 @@ export default function Register({ onRegister }) {
     e.preventDefault();
 
     onRegister(name, email, password);
+    setButtonDisabled(true);
 
     // onRegister(name, email, password).then((needClear) => {
     //   if (needClear) {
@@ -41,23 +44,22 @@ export default function Register({ onRegister }) {
 
   return (
     <BaseForm
-      form="registry"
+      form='registry'
       isRegistry={true}
-      title="Добро пожаловать!"
+      title='Добро пожаловать!'
       name={name}
       email={email}
       password={password}
-      buttonName="Зарегистрироваться"
-      buttonDisabled={false}
-      // buttonDisabled={buttonDisabled}
+      buttonName='Зарегистрироваться'
+      buttonDisabled={buttonDisabled}
       onSubmit={handleSubmit}
       onNameChange={handleNameChange}
       onEmailChange={handleEmailChange}
       onPasswordChange={handlePasswordChange}
     >
-      <p className="base-form__text">
+      <p className='base-form__text'>
         Уже зарегистрированы?
-        <Link to="/signin" className="page__link base-form__link">
+        <Link to='/signin' className='page__link base-form__link'>
           Войти
         </Link>
       </p>

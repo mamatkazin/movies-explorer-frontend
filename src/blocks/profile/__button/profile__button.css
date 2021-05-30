@@ -1,6 +1,20 @@
-.profile__button{
+.profile__button {
   font-weight: normal;
-  font-size: 13px;
-  line-height: 16px;
-  margin: 220px 0 16px 0;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 361px 0 16px 0;
+}
+
+@media all and (min-width: 768px) {
+  .profile__button {
+    margin: 192px 0 16px 0;
+    font-size: 13px;
+    line-height: 16px;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .profile__button {
+    margin: 202px 0 16px 0;
+  }
 }

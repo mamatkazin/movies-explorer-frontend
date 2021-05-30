@@ -9,12 +9,17 @@ function AboutMe(props) {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   if (isMobile) {
-
   }
 
   return (
     <section id='aboutMe' className='about-me'>
-      <div className={isMobile ? ('page__content page__content_width_s page__about-me') : ('page__content page__about-me')}>
+      <div
+        className={
+          isMobile
+            ? 'page__content page__content_width_s page__about-me'
+            : 'page__content page__about-me'
+        }
+      >
         <HeaderSection title='Студент' className='about-me__header' />
         <div className='about-me__blocks'>
           <div className='about-me__blocks-item'>
@@ -49,28 +54,58 @@ function AboutMe(props) {
         <p className='about-me__portfolio'>Портфолио</p>
         <ul className='about-me__sites'>
           <li className='about-me__sites-item'>
-            <Link to='#' className='about-me__link page__link'>
+            <a
+              href='https://github.com/mamatkazin/how-to-learn'
+              className='about-me__link page__link'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               Статичный сайт
-            </Link>
-            <Link to='#' className='about-me__link page__link'>
+            </a>
+            <a
+              href='https://github.com/mamatkazin/how-to-learn'
+              className='about-me__link page__link'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               &#8599;
-            </Link>
+            </a>
           </li>
           <li className='about-me__sites-item'>
-            <Link to='#' className='about-me__link page__link'>
+            <a
+              href='https://mamatkazin.github.io/russian-travel/index.html'
+              className='about-me__link page__link'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               Адаптивный сайт
-            </Link>
-            <Link to='#' className='about-me__link page__link'>
+            </a>
+            <a
+              href='https://mamatkazin.github.io/russian-travel/index.html'
+              className='about-me__link page__link'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               &#8599;
-            </Link>
+            </a>
           </li>
           <li className='about-me__sites-item'>
-            <Link to='#' className='about-me__link page__link'>
+            <a
+              href='https://mamatkazin.github.io/mesto/'
+              className='about-me__link page__link'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               Одностраничное приложение
-            </Link>
-            <Link to='#' className='about-me__link page__link'>
+            </a>
+            <a
+              href='https://mamatkazin.github.io/mesto/'
+              className='about-me__link page__link'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               &#8599;
-            </Link>
+            </a>
           </li>
         </ul>
       </div>

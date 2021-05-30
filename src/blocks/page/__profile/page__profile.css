@@ -1,4 +1,17 @@
-.page__profile{
-  max-width: 410px;
-  margin-top: 74px;
+.page__profile {
+  margin-top: 71px;
+  max-width: calc(100% - 60px);
+}
+
+@media all and (min-width: 768px) {
+  .page__profile {
+    max-width: 410px;
+    margin-top: 236px;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .page__profile {
+    margin-top: 74px;
+  }
 }

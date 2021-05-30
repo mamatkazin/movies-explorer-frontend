@@ -1,5 +1,5 @@
-.techs__blocks-item{
-  background-color: #E8E8E8;
+.techs__blocks-item {
+  background-color: #e8e8e8;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -9,15 +9,8 @@
   letter-spacing: -0.04em;
 }
 
-/* @media all and (min-width: 768px) {
-  .techs__blocks-item{
-    font-size: 12px;
-    line-height: 15px;
-  }
-} */
-
 @media all and (min-width: 1024px) {
-  .techs__blocks-item{
+  .techs__blocks-item {
     font-size: 14px;
     line-height: 17px;
   }

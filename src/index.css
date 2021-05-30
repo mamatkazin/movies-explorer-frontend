@@ -6,6 +6,7 @@
 @import url('./blocks/page/__content/page__content.css');
 @import url('./blocks/page/__content/_width/page__content_width_s.css');
 @import url('./blocks/page/__content/_width/page__content_width_m.css');
+@import url('./blocks/page/__content/_width/page__content_width_xs.css');
 @import url('./blocks/page/__about-project/page__about-project.css');
 @import url('./blocks/page/__techs/page__techs.css');
 @import url('./blocks/page/__about-me/page__about-me.css');
@@ -13,3 +14,4 @@
 @import url('./blocks/page/__search/page__search.css');
 @import url('./blocks/page/__profile/page__profile.css');
 @import url('./blocks/page/__footer/page__footer.css');
+@import url('./blocks/page/__not-found/page__not-found.css');

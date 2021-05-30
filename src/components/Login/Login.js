@@ -1,15 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import BaseForm from "../BaseForm";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import BaseForm from '../BaseForm';
 
 export default function Login({ onLogin }) {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
 
-  React.useEffect(() => {
-    setButtonDisabled([email, password].findIndex((item) => item === "") !== -1);
-  }, [email, password]);
+  // React.useEffect(() => {
+  //   setButtonDisabled(
+  //     [email, password].findIndex((item) => item === '') !== -1
+  //   );
+  // }, [email, password]);
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -23,6 +25,7 @@ export default function Login({ onLogin }) {
     e.preventDefault();
 
     onLogin(email, password);
+    setButtonDisabled(true);
 
     // onLogin(email, password).then((needClear) => {
     //   if (needClear) {
@@ -35,21 +38,20 @@ export default function Login({ onLogin }) {
 
   return (
     <BaseForm
-      form="login"
+      form='login'
       isRegistry={false}
-      title="Рады видеть!"
+      title='Рады видеть!'
       email={email}
       password={password}
-      buttonName="Войти"
-      buttonDisabled={false}
-      // buttonDisabled={buttonDisabled}
+      buttonName='Войти'
+      buttonDisabled={buttonDisabled}
       onSubmit={handleSubmit}
       onEmailChange={handleEmailChange}
       onPasswordChange={handlePasswordChange}
     >
-      <p className="base-form__text">
+      <p className='base-form__text'>
         Ещё не зарегистрированы?
-        <Link to="/signup" className="page__link base-form__link">
+        <Link to='/signup' className='page__link base-form__link'>
           Регистрация
         </Link>
       </p>

@@ -1,5 +1,5 @@
 .card__image {
-  height: 151px;
+  height: 168px;
   width: 100%;
   object-fit: cover;
   display: block;
@@ -11,7 +11,7 @@
 
 @media all and (min-width: 768px) {
   .card__image {
-    height: 151px;
+    height: 190px;
   }
 }
 

@@ -1,9 +1,5 @@
 import React from 'react';
 import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
-// import EditProfilePopup from "./EditProfilePopup";
-// import EditAvatarPopup from "./EditAvatarPopup";
-// import AddPlacePopup from "./AddPlacePopup";
-// import ImagePopup from "./ImagePopup";
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { ShowError, HTTPError } from '../Error';
 import api from '../../utils/api';
@@ -15,6 +11,7 @@ import SavedMovies from '../SavedMovies';
 import Profile from '../Profile';
 import Main from '../Main/Main';
 import Logout from '../Logout/Logout';
+import NotFound from '../NotFound';
 // import InfoTooltip from "./InfoTooltip";
 import './App.css';
 
@@ -92,39 +89,17 @@ function App() {
           loggedIn={loggedIn}
           component={Movies}
           cards={movies}
-          // email={email}
-          // onEditProfile={handleEditProfileClick}
-          // onAddPlace={handleAddPlaceClick}
-          // onEditAvatar={handleEditAvatarClick}
-          // onCardClick={handleCardClick}
-          // onCardLike={handleCardLike}
-          // onCardDelete={handleCardDelete}
         />
         <ProtectedRoute
           path='/saved-movies'
           loggedIn={loggedIn}
           component={SavedMovies}
           cards={movies}
-          // email={email}
-          // onEditProfile={handleEditProfileClick}
-          // onAddPlace={handleAddPlaceClick}
-          // onEditAvatar={handleEditAvatarClick}
-          // onCardClick={handleCardClick}
-          // onCardLike={handleCardLike}
-          // onCardDelete={handleCardDelete}
         />
         <ProtectedRoute
           path='/profile'
           loggedIn={loggedIn}
           component={Profile}
-          // cards={cards}
-          // email={email}
-          // onEditProfile={handleEditProfileClick}
-          // onAddPlace={handleAddPlaceClick}
-          // onEditAvatar={handleEditAvatarClick}
-          // onCardClick={handleCardClick}
-          // onCardLike={handleCardLike}
-          // onCardDelete={handleCardDelete}
         />
         <Route path='/signin'>
           {loggedIn ? (
@@ -141,24 +116,9 @@ function App() {
           )}
         </Route>
         <Route path='/signout'>{<Logout onSignOut={handleSignOut} />}</Route>
-        <Route>
-          {loggedIn ? <Redirect to='/movies' /> : <Redirect to='/signin' />}
-        </Route>
+        <Route>{loggedIn ? <NotFound /> : <Redirect to='/signin' />}</Route>
       </Switch>
-
-      {/* <EditProfilePopup
-        isOpen={isEditProfilePopupOpen}
-        onClose={closeAllPopups}
-        onUpdateUser={handleUpdateUser}
-      />
-      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-      <InfoTooltip isOpen={isInfoTooltipOpen} onClose={closeAllPopups}>
-        <>
-          <img className="popup__icon" src={infoTooltip.src} alt={infoTooltip.alt} />
-          <p className="popup__message">{infoTooltip.message}</p>
-        </>
-      </InfoTooltip>
-      <ShowError err={err} /> */}
+      <ShowError err={err} />
     </CurrentUserContext.Provider>
   );
 }

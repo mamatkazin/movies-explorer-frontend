@@ -1,7 +1,7 @@
-import React from "react";
-import { baseUrl } from "../../utils/const";
+import React from 'react';
+import { baseUrl } from '../../utils/const';
 
-import "./index.css";
+import './index.css';
 
 function MoviesCard(props) {
   // function handleCardClick() {
@@ -15,40 +15,34 @@ function MoviesCard(props) {
   function getTimeFromMins(mins) {
     const hours = Math.trunc(mins / 60);
     const minutes = mins % 60;
-    return hours + "ч " + minutes + "м";
+    return hours + 'ч ' + minutes + 'м';
   }
 
   return (
-    <>
-      {console.log("@@@@", baseUrl, props.card.image)}
-      <li className="card movies__item">
-        <img
-          className="card__image"
-          src={props.card.image ? baseUrl + props.card.image.url : "#"}
-          alt={props.card.nameRU}
-          // onClick={handleCardClick}
-        />
-        <div className="card__row">
-          <h2 className="card__name">{props.card.nameRU}</h2>
-          <div className="button-like">
-            <button
-              type="button"
-              aria-label="Поставить лайк."
-              className={
-                props.liked ? "button button-like__image card__like" : "button button-like__image"
-              }
-              // {
-              //   props.card.likes.findIndex((item) => item === currentUser.userId) !== -1
-              //     ? "button button-like__image button-like__image_liked"
-              //     : "button button-like__image"
-              // }
-              onClick={handleLikeClick}
-            ></button>
-          </div>
+    <li className='card movies__item'>
+      <img
+        className='card__image'
+        src={props.card.image ? baseUrl + props.card.image.url : '#'}
+        alt={props.card.nameRU}
+        // onClick={handleCardClick}
+      />
+      <div className='card__row'>
+        <h2 className='card__name'>{props.card.nameRU}</h2>
+        <div className='button-like'>
+          <button
+            type='button'
+            aria-label='Поставить лайк.'
+            className={
+              props.liked
+                ? 'button button-like__image button-like__image_liked card__like'
+                : 'button button-like__image'
+            }
+            onClick={handleLikeClick}
+          ></button>
         </div>
-        <p className="card__duration">{getTimeFromMins(props.card.duration)}</p>
-      </li>
-    </>
+      </div>
+      <p className='card__duration'>{getTimeFromMins(props.card.duration)}</p>
+    </li>
   );
 }
 

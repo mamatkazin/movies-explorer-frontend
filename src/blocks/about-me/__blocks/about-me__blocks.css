@@ -1,12 +1,11 @@
-.about-me__blocks{
+.about-me__blocks {
   display: flex;
   flex-direction: column-reverse;
-  /* align-items: center; */
   margin-bottom: 70px;
 }
 
 @media all and (min-width: 768px) {
-  .about-me__blocks{
+  .about-me__blocks {
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 91px;
@@ -14,7 +13,7 @@
 }
 
 @media all and (min-width: 1024px) {
-  .about-me__blocks{
+  .about-me__blocks {
     margin-bottom: 100px;
   }
 }

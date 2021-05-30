@@ -1,13 +1,25 @@
-.search__input{
+.search__input {
   font-weight: 500;
-  font-size: 28px;
-  line-height: 34px;
+  font-size: 18px;
+  line-height: 22px;
   width: 100%;
 }
 
-.search__input::placeholder{
+.search__input::placeholder {
   font-weight: 500;
-  font-size: 28px;
-  line-height: 34px;
-  color: #A0A0A0;
+  font-size: 18px;
+  line-height: 22px;
+  color: #a0a0a0;
+}
+
+@media all and (min-width: 768px) {
+  .search__input {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .search__input::placeholder {
+    font-size: 28px;
+    line-height: 34px;
+  }
 }
