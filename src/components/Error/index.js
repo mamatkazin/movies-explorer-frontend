@@ -1,11 +1,12 @@
-import React from 'react';
+import React from "react";
+import "./index.css";
 
 class HTTPError extends Error {
   constructor(code, message) {
     super(message);
 
     this.code = code;
-    this.name = 'HTTPError';
+    this.name = "HTTPError";
   }
 }
 
@@ -25,12 +26,12 @@ function ShowError(props) {
     return (
       <section
         className={`error error_opened ${
-          err.code === 200 ? 'error_theme_message' : 'error_theme_error'
+          err.code === 200 ? "error_theme_message" : "error_theme_error"
         }`}
         onClick={handleClick}
       >
-        <h2 className='error__title'>{err.code}</h2>
-        <p className='error__text'>{err.text}</p>
+        <h2 className="error__title">{err.code}</h2>
+        <p className="error__text">{err.text}</p>
       </section>
     );
   } else {
