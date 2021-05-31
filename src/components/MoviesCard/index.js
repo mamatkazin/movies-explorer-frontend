@@ -35,7 +35,7 @@ function MoviesCard(props) {
             className={
               props.liked
                 ? 'button button-like__image button-like__image_liked card__like'
-                : 'button button-like__image'
+                : 'button button-like__image card__like'
             }
             onClick={handleLikeClick}
           ></button>
