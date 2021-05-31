@@ -1,0 +1,15 @@
+.page__header {
+  max-width: calc(100% - 28px);
+}
+
+@media all and (min-width: 768px) {
+  .page__header {
+    max-width: calc(100% - 60px);
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .page__header {
+    max-width: calc(100% - 140px);
+  }
+}

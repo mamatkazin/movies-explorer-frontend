@@ -1,0 +1,16 @@
+.page__footer {
+  margin: 36px auto 20px;
+  max-width: calc(100% - 20px);
+}
+
+@media all and (min-width: 768px) {
+  .page__footer {
+    max-width: calc(100% - 60px);
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .page__footer {
+    max-width: calc(100% - 140px);
+  }
+}

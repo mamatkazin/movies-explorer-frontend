@@ -1,0 +1,15 @@
+.profile__signout {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff3055;
+  text-align: center;
+  display: block;
+}
+
+@media all and (min-width: 768px) {
+  .profile__signout {
+    font-size: 13px;
+    line-height: 16px;
+  }
+}

@@ -1,0 +1,14 @@
+.base-form__input-container{
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  padding: 0;
+  margin: 0 0 157px;
+  min-height: 266px;
+}
+
+@media all and (min-width: 768px) {
+  .base-form__input-container{
+    margin: 0 0 70px;
+  }
+}

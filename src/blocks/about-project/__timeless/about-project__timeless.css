@@ -1,0 +1,23 @@
+.about-project__timeless {
+  font-size: 11px;
+  line-height: 13px;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-template-rows: 36px 32px;
+  grid-gap: 0;
+}
+
+@media all and (min-width: 768px) {
+  .about-project__timeless {
+    grid-template-columns: 140px 1fr;
+    grid-template-rows: 36px 46px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .about-project__timeless {
+    grid-template-columns: 228px 1fr;
+  }
+}

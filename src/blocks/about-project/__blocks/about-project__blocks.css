@@ -1,0 +1,21 @@
+.about-project__blocks {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 56px;
+  margin-bottom: 60px;
+}
+
+@media all and (min-width: 768px) {
+  .about-project__blocks {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+    margin-bottom: 94px;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .about-project__blocks {
+    grid-gap: 40px;
+    margin-bottom: 110px;
+  }
+}

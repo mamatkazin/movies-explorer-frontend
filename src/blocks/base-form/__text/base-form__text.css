@@ -1,0 +1,15 @@
+.base-form__text{
+  margin: 0 0 30px;
+  font-size: 12px;
+  line-height: 15px;
+  color: #A0A0A0;
+  text-align: center;
+}
+
+@media all and (min-width: 768px) {
+  .base-form__text{
+    font-size: 14px;
+    line-height: 17px;
+    margin: 0;
+  }
+}

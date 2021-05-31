@@ -1,0 +1,3 @@
+.page__content_width_m {
+  max-width: calc(100% - 60px);
+}

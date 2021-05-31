@@ -1,0 +1,10 @@
+.banner__content{
+  margin: 0 auto;
+  max-width: 300px;
+}
+
+@media all and (min-width: 768px) {
+  .banner__content{
+    max-width: inherit;
+  }
+}
