@@ -92,6 +92,28 @@ function App() {
     }
   }
 
+  function handleSavedMovies() {
+    setWaiting(true);
+
+    mainApi
+      .getSavedMovies()
+      .then((data) => {
+        setWaiting(false);
+
+        return data;
+      })
+      .catch((error) => {
+        setErr({
+          code: error instanceof HTTPError ? error.code : "Непредвиденная ошибка",
+          text: error.message,
+        });
+
+        setWaiting(false);
+
+        return null;
+      });
+  }
+
   function handleUpdateProfile(name, email) {
     setWaiting(true);
 
@@ -211,7 +233,7 @@ function App() {
             path="/saved-movies"
             loggedIn={loggedIn}
             component={SavedMovies}
-            cards={movies}
+            onMovies={handleSavedMovies}
           />
           <ProtectedRoute
             path="/profile"
