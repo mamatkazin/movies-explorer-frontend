@@ -20,3 +20,5 @@
 @import url('./blocks/page/__footer/page__footer.css');
 @import url('./blocks/page/__not-found/page__not-found.css');
 @import url('./blocks/page/__preloader/page__preloader.css');
+
+@import url('./blocks/content/__not-found/content__not-found.css');

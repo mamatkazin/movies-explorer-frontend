@@ -1,0 +1,13 @@
+.content__not-found {
+  margin: 0 auto;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+@media all and (min-width: 768px) {
+  .content__not-found {
+    font-size: 28px;
+    line-height: 34px;
+  }
+}

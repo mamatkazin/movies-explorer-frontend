@@ -1,20 +1,20 @@
-import React from "react";
-import { Route, Switch, Redirect, useHistory } from "react-router-dom";
-import { CurrentUserContext, MoviesContext } from "../../contexts";
-import { ShowError, HTTPError } from "../Error";
-import mainApi from "../../utils/MainApi";
-import moviesApi from "../../utils/MoviesApi";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import Login from "../Login/Login";
-import Register from "../Register";
-import Movies from "../Movies";
-import SavedMovies from "../SavedMovies";
-import Profile from "../Profile";
-import Main from "../Main/Main";
-import Logout from "../Logout/Logout";
-import NotFound from "../NotFound";
-import Preloader from "../Preloader/Preloader";
-import "./App.css";
+import React from 'react';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
+import { CurrentUserContext, MoviesContext } from '../../contexts';
+import { ShowError, HTTPError } from '../Error';
+import mainApi from '../../utils/MainApi';
+import moviesApi from '../../utils/MoviesApi';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Login from '../Login/Login';
+import Register from '../Register';
+import Movies from '../Movies';
+import SavedMovies from '../SavedMovies';
+import Profile from '../Profile';
+import Main from '../Main/Main';
+import Logout from '../Logout/Logout';
+import NotFound from '../NotFound';
+import Preloader from '../Preloader/Preloader';
+import './App.css';
 
 function App() {
   const history = useHistory();
@@ -26,48 +26,24 @@ function App() {
   const [movies, setMovies] = React.useState([]);
 
   React.useEffect(() => {
-    // if (!loggedIn) {
-    //   setWaiting(true);
-
     mainApi
       .getUser()
       .then((data) => {
         setLoggedIn(true);
         setCurrentUser(data);
-        //history.push("/");
-        console.log("@@@2@@@", loggedIn);
-        // setWaiting(false);
       })
       .catch((error) => {
         //setWaiting(false);
 
         if (error instanceof HTTPError) {
           setLoggedIn(false);
-          // history.push("/signin");
-          console.log("@@@3@@@", loggedIn);
         } else {
           setErr({
-            code: "Непредвиденная ошибка",
+            code: 'Непредвиденная ошибка',
             text: error.message,
           });
         }
       });
-    // }
-
-    // if (loggedIn) {
-    //   moviesApi
-    //     .getMovies()
-    //     .then((data) => {
-    //       setMovies(data);
-    //       console.log(data);
-    //     })
-    //     .catch((error) => {
-    //       setErr({
-    //         code: error instanceof HTTPError ? error.code : "Непредвиденная ошибка",
-    //         text: error.message,
-    //       });
-    //     });
-    // }
   }, [loggedIn]);
 
   function handleMovies() {
@@ -76,14 +52,44 @@ function App() {
 
       moviesApi
         .getMovies()
-        .then((data) => {
-          setMovies(data);
-          console.log(data);
+        .then((allFilms) => {
+          mainApi
+            .getSavedMovies()
+            .then((savedFilms) => {
+              // allFilms.forEach((item, index) => {
+              //   allFilms[index].liked = savedFilms.includes(item, 0);
+              // });
+
+              allFilms.map((current) => {
+                current.liked = savedFilms.find(
+                  (item) => item.id === current.id
+                )
+                  ? true
+                  : false;
+
+                return current;
+              });
+
+              console.log('!!!!!', allFilms);
+
+              setMovies(allFilms);
+            })
+            .catch((error) => {
+              setErr({
+                code:
+                  error instanceof HTTPError
+                    ? error.code
+                    : 'Непредвиденная ошибка',
+                text: error.message,
+              });
+            });
+
           setWaiting(false);
         })
         .catch((error) => {
           setErr({
-            code: error instanceof HTTPError ? error.code : "Непредвиденная ошибка",
+            code:
+              error instanceof HTTPError ? error.code : 'Непредвиденная ошибка',
             text: error.message,
           });
 
@@ -95,7 +101,7 @@ function App() {
   function handleSavedMovies() {
     setWaiting(true);
 
-    mainApi
+    return mainApi
       .getSavedMovies()
       .then((data) => {
         setWaiting(false);
@@ -104,7 +110,78 @@ function App() {
       })
       .catch((error) => {
         setErr({
-          code: error instanceof HTTPError ? error.code : "Непредвиденная ошибка",
+          code:
+            error instanceof HTTPError ? error.code : 'Непредвиденная ошибка',
+          text: error.message,
+        });
+
+        setWaiting(false);
+
+        return null;
+      });
+  }
+
+  function handleInsertMovie(
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailer,
+    thumbnail,
+    movieId,
+    nameRU,
+    nameEN
+  ) {
+    setWaiting(true);
+
+    return mainApi
+      .getSavedMovies(
+        country,
+        director,
+        duration,
+        year,
+        description,
+        image,
+        trailer,
+        thumbnail,
+        movieId,
+        nameRU,
+        nameEN
+      )
+      .then((data) => {
+        setWaiting(false);
+
+        return data;
+      })
+      .catch((error) => {
+        setErr({
+          code:
+            error instanceof HTTPError ? error.code : 'Непредвиденная ошибка',
+          text: error.message,
+        });
+
+        setWaiting(false);
+
+        return null;
+      });
+  }
+
+  function handleDeleteMovie(movieId) {
+    setWaiting(true);
+
+    return mainApi
+      .deleteMovie(movieId)
+      .then((data) => {
+        setWaiting(false);
+
+        return data;
+      })
+      .catch((error) => {
+        setErr({
+          code:
+            error instanceof HTTPError ? error.code : 'Непредвиденная ошибка',
           text: error.message,
         });
 
@@ -121,13 +198,14 @@ function App() {
       .setUser(name, email)
       .then((data) => {
         setCurrentUser(data);
-        setErr({ code: 200, text: "Данные успешно обновленны!" });
+        setErr({ code: 200, text: 'Данные успешно обновленны!' });
 
         setWaiting(false);
       })
       .catch((error) => {
         setErr({
-          code: error instanceof HTTPError ? error.code : "Непредвиденная ошибка",
+          code:
+            error instanceof HTTPError ? error.code : 'Непредвиденная ошибка',
           text: error.message,
         });
 
@@ -141,8 +219,8 @@ function App() {
     return mainApi
       .signup(name, email, password)
       .then((data) => {
-        history.push("/signin");
-        setErr({ code: 200, text: "Вы успешно зарегистрировались!" });
+        history.push('/signin');
+        setErr({ code: 200, text: 'Вы успешно зарегистрировались!' });
 
         setWaiting(false);
 
@@ -150,7 +228,8 @@ function App() {
       })
       .catch((error) => {
         setErr({
-          code: error instanceof HTTPError ? error.code : "Непредвиденная ошибка",
+          code:
+            error instanceof HTTPError ? error.code : 'Непредвиденная ошибка',
           text: error.message,
         });
 
@@ -170,13 +249,14 @@ function App() {
         setLoggedIn(true);
         setWaiting(false);
 
-        history.push("/");
+        history.push('/');
 
         return true;
       })
       .catch((error) => {
         setErr({
-          code: error instanceof HTTPError ? error.code : "Непредвиденная ошибка",
+          code:
+            error instanceof HTTPError ? error.code : 'Непредвиденная ошибка',
           text: error.message,
         });
 
@@ -195,13 +275,14 @@ function App() {
         setLoggedIn(false);
         setWaiting(false);
 
-        history.push("/signin");
+        history.push('/signin');
 
         return true;
       })
       .catch((error) => {
         setErr({
-          code: error instanceof HTTPError ? error.code : "Непредвиденная ошибка",
+          code:
+            error instanceof HTTPError ? error.code : 'Непредвиденная ошибка',
           text: error.message,
         });
 
@@ -215,7 +296,7 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <MoviesContext.Provider value={movies}>
         <Switch>
-          <Route exact path="/">
+          <Route exact path='/'>
             {/* {loggedIn ? (
             <Redirect to='/movies' />
           ) : (
@@ -224,31 +305,40 @@ function App() {
             <Main loggedIn={loggedIn} />
           </Route>
           <ProtectedRoute
-            path="/movies"
+            path='/movies'
             loggedIn={loggedIn}
             component={Movies}
             onMovies={handleMovies}
+            onInsertMovie={handleInsertMovie}
+            onDeleteMovie={handleDeleteMovie}
           />
           <ProtectedRoute
-            path="/saved-movies"
+            path='/saved-movies'
             loggedIn={loggedIn}
             component={SavedMovies}
             onMovies={handleSavedMovies}
+            onDeleteMovie={handleDeleteMovie}
           />
           <ProtectedRoute
-            path="/profile"
+            path='/profile'
             loggedIn={loggedIn}
             component={Profile}
             onUpdateProfile={handleUpdateProfile}
           />
-          <Route path="/signin">
-            {loggedIn ? <Redirect to="/" /> : <Login onLogin={handleLogin} />}
+          <Route path='/signin'>
+            {loggedIn ? <Redirect to='/' /> : <Login onLogin={handleLogin} />}
           </Route>
-          <Route path="/signup">
-            {loggedIn ? <Redirect to="/" /> : <Register onRegister={handleRegister} />}
+          <Route path='/signup'>
+            {loggedIn ? (
+              <Redirect to='/' />
+            ) : (
+              <Register onRegister={handleRegister} />
+            )}
           </Route>
-          <Route path="/signout">{<Logout onSignOut={handleSignOut} />}</Route>
-          <Route path="*">{loggedIn ? <NotFound /> : <Redirect to="/signin" />}</Route>
+          <Route path='/signout'>{<Logout onSignOut={handleSignOut} />}</Route>
+          <Route path='*'>
+            {loggedIn ? <NotFound /> : <Redirect to='/signin' />}
+          </Route>
         </Switch>
         {waiting && <Preloader />}
         <ShowError err={err} />
