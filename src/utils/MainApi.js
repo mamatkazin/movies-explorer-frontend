@@ -1,4 +1,4 @@
-import { HTTPError } from '../components/Error';
+import { HTTPError } from "../components/Error";
 // import { mainApiUrl } from "./const";
 
 class MainApi {
@@ -18,17 +18,17 @@ class MainApi {
   }
 
   getUser() {
-    return fetch(this._baseUrl + '/users/me', {
+    return fetch(this._baseUrl + "/users/me", {
       headers: this._headers,
-      credentials: 'include',
-      method: 'GET',
+      credentials: "include",
+      method: "GET",
     }).then(this._getResponseData);
   }
 
   setUser(name, email) {
-    return fetch(this._baseUrl + '/users/me', {
-      method: 'PATCH',
-      credentials: 'include',
+    return fetch(this._baseUrl + "/users/me", {
+      method: "PATCH",
+      credentials: "include",
       headers: this._headers,
       body: JSON.stringify({
         name: name,
@@ -38,10 +38,10 @@ class MainApi {
   }
 
   getSavedMovies() {
-    return fetch(this._baseUrl + '/movies', {
+    return fetch(this._baseUrl + "/movies", {
       headers: this._headers,
-      credentials: 'include',
-      method: 'GET',
+      credentials: "include",
+      method: "GET",
     }).then(this._getResponseData);
   }
 
@@ -56,11 +56,11 @@ class MainApi {
     thumbnail,
     movieId,
     nameRU,
-    nameEN
+    nameEN,
   ) {
-    return fetch(this._baseUrl + '/movies', {
-      method: 'POST',
-      credentials: 'include',
+    return fetch(this._baseUrl + "/movies", {
+      method: "POST",
+      credentials: "include",
       headers: this._headers,
       body: JSON.stringify({
         country: country,
@@ -79,17 +79,17 @@ class MainApi {
   }
 
   deleteMovie(movieId) {
-    return fetch(this._baseUrl + '/movies/' + movieId, {
-      method: 'DELETE',
-      credentials: 'include',
+    return fetch(this._baseUrl + "/movies/" + movieId, {
+      method: "DELETE",
+      credentials: "include",
       headers: this._headers,
     }).then(this._getResponseData);
   }
 
   signup(name, email, password) {
-    return fetch(this._baseUrl + '/signup', {
-      method: 'POST',
-      credentials: 'include',
+    return fetch(this._baseUrl + "/signup", {
+      method: "POST",
+      credentials: "include",
       headers: this._headers,
       body: JSON.stringify({
         name: name,
@@ -100,10 +100,10 @@ class MainApi {
   }
 
   signin(email, password) {
-    return fetch(this._baseUrl + '/signin', {
+    return fetch(this._baseUrl + "/signin", {
       headers: this._headers,
-      credentials: 'include',
-      method: 'POST',
+      credentials: "include",
+      method: "POST",
       body: JSON.stringify({
         email: email,
         password: password,
@@ -112,20 +112,20 @@ class MainApi {
   }
 
   signout() {
-    return fetch(this._baseUrl + '/signout', {
+    return fetch(this._baseUrl + "/signout", {
       headers: this._headers,
-      credentials: 'include',
-      method: 'POST',
+      credentials: "include",
+      method: "POST",
     }).then(this._getResponseData);
   }
 }
 
 const mainApi = new MainApi({
   // baseUrl: mainApiUrl,
-  // baseUrl: "http://172.20.12.66:4000",
-  baseUrl: 'http://192.168.1.2:4000',
+  baseUrl: "http://172.20.12.66:4000",
+  // baseUrl: 'http://192.168.1.2:4000',
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 

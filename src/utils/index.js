@@ -19,3 +19,13 @@ export function filteredMovies(movies, subStr, shortFilm) {
 
   return result;
 }
+
+export function setFieldLike(movies, savedMovies) {
+  movies.map((current) => {
+    current.liked = savedMovies.find((item) => item.id === current.id) ? true : false;
+
+    return current;
+  });
+
+  // return movies;
+}
