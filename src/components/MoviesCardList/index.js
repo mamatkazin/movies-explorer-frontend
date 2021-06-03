@@ -17,10 +17,8 @@ function MoviesCardList(props) {
         <ul className="movies__list">
           {props.cards.slice(props.offset[0], props.offset[1]).map((card, i) => (
             <MoviesCard
-              key={card.id}
+              key={typeof card.liked === "undefined" ? card.movieId : card.id}
               card={card}
-              // onInsertMovie={props.onInsertMovie}
-              // onDeleteMovie={props.onDeleteMovie}
               onLike={props.onLike}
             />
           ))}

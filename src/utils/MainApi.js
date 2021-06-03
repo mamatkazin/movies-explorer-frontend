@@ -1,4 +1,5 @@
 import { HTTPError } from "../components/Error";
+import { baseUrl } from "./const";
 // import { mainApiUrl } from "./const";
 
 class MainApi {
@@ -68,9 +69,9 @@ class MainApi {
         duration: duration,
         year: year,
         description: description,
-        image: image,
+        image: baseUrl + image,
         trailer: trailer,
-        thumbnail: thumbnail,
+        thumbnail: baseUrl + thumbnail,
         movieId: movieId,
         nameRU: nameRU,
         nameEN: nameEN,

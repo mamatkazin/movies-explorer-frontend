@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch, Redirect, useHistory } from "react-router-dom";
-import { CurrentUserContext, MoviesContext } from "../../contexts";
+import { CurrentUserContext, MoviesContext, SavedMoviesContext } from "../../contexts";
 import { ShowError, HTTPError } from "../Error";
 import mainApi from "../../utils/MainApi";
 import moviesApi from "../../utils/MoviesApi";
@@ -56,24 +56,15 @@ function App() {
       moviesApi
         .getMovies()
         .then((allFilms) => {
-          if (savedMovies.length === 0) {
-            mainApi
-              .getSavedMovies()
-              .then((savedFilms) => {
-                setSavedMovies(setFieldLike(allFilms, savedFilms));
-                console.log("!!!!!", allFilms);
-              })
-              .catch((error) => {
-                setErr({
-                  code: error instanceof HTTPError ? error.code : "Непредвиденная ошибка",
-                  text: error.message,
-                });
-              });
-          } else {
-            setFieldLike(allFilms, savedMovies);
-          }
+          handleSavedMovies().then((savedFilms) => {
+            const likedFilms = setFieldLike(allFilms, savedFilms);
+            setMovies(likedFilms);
 
-          setMovies(allFilms);
+            if (savedFilms) {
+              setSavedMovies(savedFilms);
+            }
+          });
+
           setWaiting(false);
         })
         .catch((error) => {
@@ -88,60 +79,92 @@ function App() {
   }
 
   function handleSavedMovies() {
-    if (savedMovies.length === 0) {
-      setWaiting(true);
-
-      return mainApi
-        .getSavedMovies()
-        .then((data) => {
-          setSavedMovies(data);
-          setWaiting(false);
-
-          return data;
-        })
-        .catch((error) => {
-          setErr({
-            code: error instanceof HTTPError ? error.code : "Непредвиденная ошибка",
-            text: error.message,
-          });
-
-          setWaiting(false);
-
-          return null;
-        });
-    }
-  }
-
-  function handleLike(card) {}
-
-  function handleInsertMovie(
-    country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailer,
-    thumbnail,
-    movieId,
-    nameRU,
-    nameEN,
-  ) {
     setWaiting(true);
 
     return mainApi
-      .getSavedMovies(
-        country,
-        director,
-        duration,
-        year,
-        description,
-        image,
-        trailer,
-        thumbnail,
-        movieId,
-        nameRU,
-        nameEN,
+      .getSavedMovies()
+      .then((data) => {
+        setSavedMovies(data);
+        setWaiting(false);
+
+        return data;
+      })
+      .catch((error) => {
+        setErr({
+          code: error instanceof HTTPError ? error.code : "Непредвиденная ошибка",
+          text: error.message,
+        });
+
+        setWaiting(false);
+
+        return null;
+      });
+  }
+
+  function handleLike(card) {
+    if (!!!savedMovies) {
+      handleInsertMovie(card).then((data) => {
+        console.log("##5##", movies);
+        handleSavedMovies().then((savedFilms) => {
+          const likedFilms = setFieldLike(movies, savedFilms);
+          setMovies([]);
+          setMovies(likedFilms);
+
+          if (savedFilms) {
+            setSavedMovies([]);
+            setSavedMovies(savedFilms);
+          }
+        });
+      });
+    } else {
+      if (!!savedMovies.find((item) => item.movieId === (card.id || card.movieId))) {
+        console.log("##6##", card.savedId);
+        handleDeleteMovie(card.savedId || card._id).then(() => {
+          handleSavedMovies().then((savedFilms) => {
+            const likedFilms = setFieldLike(movies, savedFilms);
+            setMovies([]);
+            setMovies(likedFilms);
+
+            if (savedFilms) {
+              setSavedMovies([]);
+              setSavedMovies(savedFilms);
+            }
+          });
+        });
+      } else {
+        console.log("##7##", movies);
+        handleInsertMovie(card).then(() => {
+          handleSavedMovies().then((savedFilms) => {
+            const likedFilms = setFieldLike(movies, savedFilms);
+            setMovies([]);
+            setMovies(likedFilms);
+
+            if (savedFilms) {
+              setSavedMovies([]);
+              setSavedMovies(savedFilms);
+            }
+          });
+        });
+      }
+    }
+  }
+
+  function handleInsertMovie(card) {
+    setWaiting(true);
+
+    return mainApi
+      .saveMovie(
+        card.country,
+        card.director,
+        card.duration,
+        card.year,
+        card.description,
+        card.image.url,
+        card.trailerLink,
+        card.image.formats.thumbnail.url,
+        card.id,
+        card.nameRU,
+        card.nameEN,
       )
       .then((data) => {
         setWaiting(false);
@@ -282,49 +305,43 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <MoviesContext.Provider value={movies}>
-        <Switch>
-          <Route exact path="/">
-            {/* {loggedIn ? (
-            <Redirect to='/movies' />
-          ) : (
-            <Main loggedIn={loggedIn} />
-          )} */}
-            <Main loggedIn={loggedIn} />
-          </Route>
-          <ProtectedRoute
-            path="/movies"
-            loggedIn={loggedIn}
-            component={Movies}
-            onMovies={handleMovies}
-            // onInsertMovie={handleInsertMovie}
-            // onDeleteMovie={handleDeleteMovie}
-            onLike={handleLike}
-          />
-          <ProtectedRoute
-            path="/saved-movies"
-            loggedIn={loggedIn}
-            component={SavedMovies}
-            onMovies={handleSavedMovies}
-            onDeleteMovie={handleDeleteMovie}
-            onLike={handleLike}
-          />
-          <ProtectedRoute
-            path="/profile"
-            loggedIn={loggedIn}
-            component={Profile}
-            onUpdateProfile={handleUpdateProfile}
-          />
-          <Route path="/signin">
-            {loggedIn ? <Redirect to="/" /> : <Login onLogin={handleLogin} />}
-          </Route>
-          <Route path="/signup">
-            {loggedIn ? <Redirect to="/" /> : <Register onRegister={handleRegister} />}
-          </Route>
-          <Route path="/signout">{<Logout onSignOut={handleSignOut} />}</Route>
-          <Route path="*">{loggedIn ? <NotFound /> : <Redirect to="/signin" />}</Route>
-        </Switch>
-        {waiting && <Preloader />}
-        <ShowError err={err} />
+        <SavedMoviesContext.Provider value={savedMovies}>
+          <Switch>
+            <Route exact path="/">
+              <Main loggedIn={loggedIn} />
+            </Route>
+            <ProtectedRoute
+              path="/movies"
+              loggedIn={loggedIn}
+              component={Movies}
+              onMovies={handleMovies}
+              onLike={handleLike}
+            />
+            <ProtectedRoute
+              path="/saved-movies"
+              loggedIn={loggedIn}
+              component={SavedMovies}
+              onMovies={handleSavedMovies}
+              onLike={handleLike}
+            />
+            <ProtectedRoute
+              path="/profile"
+              loggedIn={loggedIn}
+              component={Profile}
+              onUpdateProfile={handleUpdateProfile}
+            />
+            <Route path="/signin">
+              {loggedIn ? <Redirect to="/" /> : <Login onLogin={handleLogin} />}
+            </Route>
+            <Route path="/signup">
+              {loggedIn ? <Redirect to="/" /> : <Register onRegister={handleRegister} />}
+            </Route>
+            <Route path="/signout">{<Logout onSignOut={handleSignOut} />}</Route>
+            <Route path="*">{loggedIn ? <NotFound /> : <Redirect to="/signin" />}</Route>
+          </Switch>
+          {waiting && <Preloader />}
+          <ShowError err={err} />
+        </SavedMoviesContext.Provider>
       </MoviesContext.Provider>
     </CurrentUserContext.Provider>
   );

@@ -68,13 +68,7 @@ function Movies(props) {
           <h2 className="content__not-found page__content">Ничего не найдено</h2>
         ) : (
           <>
-            <MoviesCardList
-              cards={filter}
-              offset={offset}
-              // onInsertMovie={props.onInsertMovie}
-              // onDeleteMovie={props.onDeleteMovie}
-              onLike={props.onLike}
-            />
+            <MoviesCardList cards={filter} offset={offset} onLike={props.onLike} />
             {buttonVisible && (
               <button className="button button-movies" type="button" onClick={handleClick}>
                 Ещё

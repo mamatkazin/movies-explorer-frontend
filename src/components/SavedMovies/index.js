@@ -52,12 +52,7 @@ function SavedMovies(props) {
         {notFound ? (
           <h2 className="content__not-found page__content">Ничего не найдено</h2>
         ) : (
-          <MoviesCardList
-            cards={filter}
-            offset={offset}
-            // onDeleteMovie={props.onDeleteMovie}
-            onLike={props.onLike}
-          />
+          <MoviesCardList cards={filter} offset={offset} onLike={props.onLike} />
         )}
       </main>
       <Footer />
