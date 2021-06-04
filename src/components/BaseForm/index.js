@@ -24,7 +24,6 @@ export default function BaseForm(props) {
                     type="text"
                     className="input base-form__input"
                     name="name"
-                    // placeholder="Name"
                     required
                     minLength={2}
                     maxLength={30}
@@ -39,7 +38,6 @@ export default function BaseForm(props) {
                 type="email"
                 className="input input_font-weight_medium base-form__input"
                 name="email"
-                // placeholder="Email"
                 required
                 value={props.email}
                 onChange={props.onEmailChange}
@@ -50,7 +48,6 @@ export default function BaseForm(props) {
                 type="password"
                 className="input base-form__input"
                 name="password"
-                // placeholder="Пароль"
                 required
                 value={props.password}
                 minLength={3}

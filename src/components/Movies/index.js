@@ -56,8 +56,6 @@ function Movies(props) {
 
     setOffset([offset[0], offsetEnd]);
 
-    console.log("######", offsetEnd, filter.length);
-
     if (offsetEnd >= filter.length) {
       setButtonVisible(false);
     }

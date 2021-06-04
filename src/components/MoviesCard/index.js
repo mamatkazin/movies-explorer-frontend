@@ -4,18 +4,6 @@ import { baseUrl } from "../../utils/const";
 import "./index.css";
 
 function MoviesCard(props) {
-  // const [liked, setLiked] = React.useState(props.card.liked);
-
-  // React.useEffect(() => {
-  //   console.log("синим", props.card.liked);
-  //   console.log("синим", liked);
-  //   //setLiked(props.card.liked);
-  // });
-
-  // function handleCardClick() {
-  //   props.onCardClick(props.card);
-  // }
-
   function handleLikeClick() {
     props.onLike(props.card);
   }
@@ -28,7 +16,6 @@ function MoviesCard(props) {
 
   return (
     <li className="card movies__item">
-      {console.log(props.card.trailerLink)}
       {props.card.trailerLink.includes("www.youtube.com") ? (
         <iframe
           className="card__image"

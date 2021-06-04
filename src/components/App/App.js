@@ -86,7 +86,6 @@ function App() {
     return mainApi
       .getSavedMovies()
       .then((data) => {
-        // savedMovies.length = 0;
         setSavedMovies(() => [...[], ...data]);
         setWaiting(false);
 
@@ -136,50 +135,6 @@ function App() {
       }
     }
   }
-
-  // function handleDeleteLike(card) {
-  //   setWaiting(true);
-
-  //   return mainApi
-  //     .deleteMovie(card.savedId || card._id)
-  //     .then(() => {
-  //       mainApi
-  //         .getSavedMovies()
-  //         .then((films) => {
-  //           savedMovies.length = 0;
-  //           setSavedMovies((old) => [...[], ...films]);
-  //         })
-  //         .catch((error) => {
-  //           setErr({
-  //             code: error instanceof HTTPError ? error.code : "Непредвиденная ошибка",
-  //             text: error.message,
-  //           });
-  //         });
-  //       setWaiting(false);
-  //     })
-  //     .catch((error) => {
-  //       setErr({
-  //         code: error instanceof HTTPError ? error.code : "Непредвиденная ошибка",
-  //         text: error.message,
-  //       });
-
-  //       setWaiting(false);
-
-  //       return null;
-  //     });
-
-  //   // handleDeleteMovie(card.savedId || card._id).then(() => {
-  //   //   handleSavedMovies().then((savedFilms) => {
-  //   //     // const likedFilms = setFieldLike(movies, savedFilms);
-  //   //     // setMovies([]);
-  //   //     // setMovies(likedFilms);
-  //   //     // if (savedFilms) {
-  //   //     //   setSavedMovies([]);
-  //   //     //   setSavedMovies(savedFilms);
-  //   //     // }
-  //   //   });
-  //   // });
-  // }
 
   function handleInsertMovie(card) {
     setWaiting(true);
@@ -289,7 +244,7 @@ function App() {
     return mainApi
       .signin(email, password)
       .then((data) => {
-        // setCurrentUser(data);
+        setCurrentUser(data);
         setLoggedIn(true);
         setWaiting(false);
 
@@ -355,7 +310,6 @@ function App() {
               component={SavedMovies}
               onMovies={handleSavedMovies}
               onLike={handleLike}
-              // onDeleteLike={handleDeleteLike}
             />
             <ProtectedRoute
               path="/profile"

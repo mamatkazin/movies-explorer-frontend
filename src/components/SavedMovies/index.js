@@ -42,17 +42,6 @@ function SavedMovies(props) {
     setFilter(findArr);
   }
 
-  // function handleLike(card) {
-  //   props.onDeleteLike(card).then(() => {
-  //     console.log("&&&&&&&&&");
-  //     // filter.length = 0;
-  //     // setCheck(!check);
-  //     // //movies.length = 0;
-  //     // const findArr = filteredMovies(movies, subStr, shortFilm);
-  //     // setFilter([...[], ...findArr]);
-  //   });
-  // }
-
   return (
     <div className="page">
       <Header loggedIn={props.loggedIn} themeColor="light"></Header>
