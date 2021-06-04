@@ -36,8 +36,6 @@ function App() {
         setCurrentUser(data);
       })
       .catch((error) => {
-        //setWaiting(false);
-
         if (error instanceof HTTPError) {
           setLoggedIn(false);
         } else {
@@ -51,6 +49,13 @@ function App() {
 
   function handleMovies() {
     if (movies.length === 0) {
+      const storageMovies = JSON.parse(localStorage.getItem("movies"));
+
+      if (storageMovies && storageMovies.length > 0) {
+        setMovies(storageMovies);
+        return;
+      }
+
       setWaiting(true);
 
       moviesApi
@@ -58,11 +63,8 @@ function App() {
         .then((allFilms) => {
           handleSavedMovies().then((savedFilms) => {
             const likedFilms = setFieldLike(allFilms, savedFilms);
+            localStorage.setItem("movies", JSON.stringify(likedFilms));
             setMovies(likedFilms);
-
-            if (savedFilms) {
-              setSavedMovies(savedFilms);
-            }
           });
 
           setWaiting(false);
@@ -84,7 +86,8 @@ function App() {
     return mainApi
       .getSavedMovies()
       .then((data) => {
-        setSavedMovies(data);
+        // savedMovies.length = 0;
+        setSavedMovies(() => [...[], ...data]);
         setWaiting(false);
 
         return data;
@@ -104,50 +107,79 @@ function App() {
   function handleLike(card) {
     if (!!!savedMovies) {
       handleInsertMovie(card).then((data) => {
-        console.log("##5##", movies);
         handleSavedMovies().then((savedFilms) => {
           const likedFilms = setFieldLike(movies, savedFilms);
           setMovies([]);
           setMovies(likedFilms);
-
-          if (savedFilms) {
-            setSavedMovies([]);
-            setSavedMovies(savedFilms);
-          }
+          localStorage.setItem("movies", JSON.stringify(likedFilms));
         });
       });
     } else {
       if (!!savedMovies.find((item) => item.movieId === (card.id || card.movieId))) {
-        console.log("##6##", card.savedId);
         handleDeleteMovie(card.savedId || card._id).then(() => {
           handleSavedMovies().then((savedFilms) => {
             const likedFilms = setFieldLike(movies, savedFilms);
             setMovies([]);
             setMovies(likedFilms);
-
-            if (savedFilms) {
-              setSavedMovies([]);
-              setSavedMovies(savedFilms);
-            }
+            localStorage.setItem("movies", JSON.stringify(likedFilms));
           });
         });
       } else {
-        console.log("##7##", movies);
         handleInsertMovie(card).then(() => {
           handleSavedMovies().then((savedFilms) => {
             const likedFilms = setFieldLike(movies, savedFilms);
             setMovies([]);
             setMovies(likedFilms);
-
-            if (savedFilms) {
-              setSavedMovies([]);
-              setSavedMovies(savedFilms);
-            }
+            localStorage.setItem("movies", JSON.stringify(likedFilms));
           });
         });
       }
     }
   }
+
+  // function handleDeleteLike(card) {
+  //   setWaiting(true);
+
+  //   return mainApi
+  //     .deleteMovie(card.savedId || card._id)
+  //     .then(() => {
+  //       mainApi
+  //         .getSavedMovies()
+  //         .then((films) => {
+  //           savedMovies.length = 0;
+  //           setSavedMovies((old) => [...[], ...films]);
+  //         })
+  //         .catch((error) => {
+  //           setErr({
+  //             code: error instanceof HTTPError ? error.code : "Непредвиденная ошибка",
+  //             text: error.message,
+  //           });
+  //         });
+  //       setWaiting(false);
+  //     })
+  //     .catch((error) => {
+  //       setErr({
+  //         code: error instanceof HTTPError ? error.code : "Непредвиденная ошибка",
+  //         text: error.message,
+  //       });
+
+  //       setWaiting(false);
+
+  //       return null;
+  //     });
+
+  //   // handleDeleteMovie(card.savedId || card._id).then(() => {
+  //   //   handleSavedMovies().then((savedFilms) => {
+  //   //     // const likedFilms = setFieldLike(movies, savedFilms);
+  //   //     // setMovies([]);
+  //   //     // setMovies(likedFilms);
+  //   //     // if (savedFilms) {
+  //   //     //   setSavedMovies([]);
+  //   //     //   setSavedMovies(savedFilms);
+  //   //     // }
+  //   //   });
+  //   // });
+  // }
 
   function handleInsertMovie(card) {
     setWaiting(true);
@@ -261,7 +293,7 @@ function App() {
         setLoggedIn(true);
         setWaiting(false);
 
-        history.push("/");
+        history.push("/movies");
 
         return true;
       })
@@ -323,6 +355,7 @@ function App() {
               component={SavedMovies}
               onMovies={handleSavedMovies}
               onLike={handleLike}
+              // onDeleteLike={handleDeleteLike}
             />
             <ProtectedRoute
               path="/profile"
@@ -331,16 +364,17 @@ function App() {
               onUpdateProfile={handleUpdateProfile}
             />
             <Route path="/signin">
-              {loggedIn ? <Redirect to="/" /> : <Login onLogin={handleLogin} />}
+              {loggedIn ? <Redirect to="/movies" /> : <Login onLogin={handleLogin} />}
             </Route>
             <Route path="/signup">
-              {loggedIn ? <Redirect to="/" /> : <Register onRegister={handleRegister} />}
+              {loggedIn ? <Redirect to="/movies" /> : <Register onRegister={handleRegister} />}
             </Route>
             <Route path="/signout">{<Logout onSignOut={handleSignOut} />}</Route>
             <Route path="*">{loggedIn ? <NotFound /> : <Redirect to="/signin" />}</Route>
           </Switch>
           {waiting && <Preloader />}
           <ShowError err={err} />
+          {/* <VideoPopup card={selectedCard} onClose={closeAllPopups} /> */}
         </SavedMoviesContext.Provider>
       </MoviesContext.Provider>
     </CurrentUserContext.Provider>

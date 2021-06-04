@@ -25,6 +25,14 @@ function Movies(props) {
     props.onMovies();
   }, []);
 
+  React.useEffect(() => {
+    if (offset[1] >= filter.length) {
+      setButtonVisible(false);
+    } else {
+      setButtonVisible(true);
+    }
+  }, [offset, filter.length]);
+
   function handleSubStrChange(e) {
     setSubStr(e.target.value);
   }
@@ -41,13 +49,14 @@ function Movies(props) {
     setNotFound(findArr.length === 0 ? true : false);
     setOffset([0, isMobile ? 2 : isTablet ? 3 : 4]);
     setFilter(findArr);
-    setButtonVisible(true);
   }
 
   function handleClick(e) {
     const offsetEnd = isMobile ? offset[1] + 2 : isTablet ? offset[1] + 3 : offset[1] + 4;
 
     setOffset([offset[0], offsetEnd]);
+
+    console.log("######", offsetEnd, filter.length);
 
     if (offsetEnd >= filter.length) {
       setButtonVisible(false);

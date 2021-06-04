@@ -15,13 +15,13 @@ function MoviesCardList(props) {
     >
       {props.cards.length > 0 && (
         <ul className="movies__list">
-          {props.cards.slice(props.offset[0], props.offset[1]).map((card, i) => (
-            <MoviesCard
-              key={typeof card.liked === "undefined" ? card.movieId : card.id}
-              card={card}
-              onLike={props.onLike}
-            />
-          ))}
+          {typeof props.offset === "undefined"
+            ? props.cards.map((card, i) => (
+                <MoviesCard key={card.movieId} card={card} onLike={props.onLike} />
+              ))
+            : props.cards
+                .slice(props.offset[0], props.offset[1])
+                .map((card, i) => <MoviesCard key={card.id} card={card} onLike={props.onLike} />)}
         </ul>
       )}
     </section>

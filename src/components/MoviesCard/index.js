@@ -28,18 +28,27 @@ function MoviesCard(props) {
 
   return (
     <li className="card movies__item">
-      <img
-        className="card__image"
-        src={
-          typeof props.card.liked === "undefined"
-            ? props.card.image
-            : props.card.image
-            ? baseUrl + props.card.image.url
-            : "#"
-        }
-        alt={props.card.nameRU}
-        // onClick={handleCardClick}
-      />
+      {console.log(props.card.trailerLink)}
+      {props.card.trailerLink.includes("www.youtube.com") ? (
+        <iframe
+          className="card__image"
+          src={props.card.trailerLink.replace("watch?v=", "embed/")}
+          title={props.card.nameRU}
+        ></iframe>
+      ) : (
+        <img
+          className="card__image"
+          src={
+            typeof props.card.liked === "undefined"
+              ? props.card.image
+              : props.card.image
+              ? baseUrl + props.card.image.url
+              : "#"
+          }
+          alt={props.card.nameRU}
+          // onClick={handleCardClick}
+        />
+      )}
       <div className="card__row">
         <h2 className="card__name">{props.card.nameRU}</h2>
         <div
