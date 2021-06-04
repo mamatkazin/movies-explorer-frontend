@@ -6,7 +6,7 @@ import AboutProject from "../AboutProject";
 import Techs from "../Techs";
 import AboutMe from "../AboutMe";
 import Footer from "../Footer";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../../contexts";
 
 function Main(props) {
   const currentUser = React.useContext(CurrentUserContext);
