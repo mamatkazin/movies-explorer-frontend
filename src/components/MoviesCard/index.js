@@ -16,7 +16,7 @@ function MoviesCard(props) {
 
   return (
     <li className="card movies__item">
-      {props.card.trailerLink.includes("www.youtube.com") ? (
+      {props.card.trailerLink && props.card.trailerLink.includes("www.youtube.com") ? (
         <iframe
           className="card__image"
           src={props.card.trailerLink.replace("watch?v=", "embed/")}

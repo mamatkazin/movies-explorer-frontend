@@ -324,7 +324,7 @@ function App() {
               {loggedIn ? <Redirect to="/movies" /> : <Register onRegister={handleRegister} />}
             </Route>
             <Route path="/signout">{<Logout onSignOut={handleSignOut} />}</Route>
-            <Route path="*">{loggedIn ? <NotFound /> : <Redirect to="/signin" />}</Route>
+            <Route>{loggedIn ? <NotFound /> : <Redirect to="/signin" />}</Route>
           </Switch>
           {waiting && <Preloader />}
           <ShowError err={err} />
