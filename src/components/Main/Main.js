@@ -6,10 +6,10 @@ import AboutProject from "../AboutProject";
 import Techs from "../Techs";
 import AboutMe from "../AboutMe";
 import Footer from "../Footer";
-import { CurrentUserContext } from "../../contexts";
+//import { CurrentUserContext } from "../../contexts";
 
 function Main(props) {
-  const currentUser = React.useContext(CurrentUserContext);
+  //const currentUser = React.useContext(CurrentUserContext);
 
   return (
     <div className="page">

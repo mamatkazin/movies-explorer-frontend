@@ -5,11 +5,20 @@ import { CurrentUserContext } from "../../contexts";
 import "./index.css";
 
 function Profile(props) {
-  const currentUser = React.useContext(CurrentUserContext);
+  let currentUser = React.useContext(CurrentUserContext);
 
-  const [name, setName] = React.useState(currentUser.name);
-  const [email, setEmail] = React.useState(currentUser.email);
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!currentUser) {
+      currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    }
+
+    setName(currentUser.name);
+    setEmail(currentUser.email);
+  }, []);
 
   React.useEffect(() => {
     setButtonDisabled([name, email].findIndex((item) => item === "") !== -1);

@@ -124,7 +124,7 @@ class MainApi {
 const mainApi = new MainApi({
   baseUrl: mainApiUrl,
   // baseUrl: "http://172.20.12.66:4000",
-  // baseUrl: 'http://192.168.1.2:4000',
+  // baseUrl: "http://192.168.1.7:4000",
   headers: {
     "Content-Type": "application/json",
   },

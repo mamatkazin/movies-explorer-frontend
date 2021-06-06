@@ -22,7 +22,7 @@ function Search(props) {
             name="search"
             placeholder="Фильм"
             required
-            value={props.name}
+            value={props.subStr}
             onChange={props.onSubStrChange}
           />
           <button className="button search__button" type="submit">

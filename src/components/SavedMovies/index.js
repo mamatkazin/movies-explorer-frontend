@@ -16,12 +16,28 @@ function SavedMovies(props) {
   const [notFound, setNotFound] = React.useState(false);
 
   React.useEffect(() => {
-    props.onMovies();
+    const storageFilter = JSON.parse(localStorage.getItem("storageSavedFilter"));
+
+    if (storageFilter) {
+      setSubStr(storageFilter.subStr);
+      setShortFilm(storageFilter.shortFilm);
+      setFilter(storageFilter.findArr);
+    }
   }, []);
 
   React.useEffect(() => {
-    const findArr = filteredMovies(movies, subStr, shortFilm);
-    setFilter(findArr);
+    let findArr;
+
+    if (movies.length === 0) {
+      props.onMovies();
+    } else {
+      if (subStr) {
+        findArr = filteredMovies(movies, subStr, shortFilm);
+        setFilter(findArr);
+
+        localStorage.setItem("storageSavedFilter", JSON.stringify({ findArr, subStr, shortFilm }));
+      }
+    }
   }, [movies]);
 
   function handleSubStrChange(e) {
@@ -34,12 +50,14 @@ function SavedMovies(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    props.onMovies().then((data) => {
+      const findArr = filteredMovies(data, subStr, shortFilm);
 
-    const findArr = filteredMovies(movies, subStr, shortFilm);
+      setNotFound(findArr.length === 0 ? true : false);
 
-    setNotFound(findArr.length === 0 ? true : false);
-
-    setFilter(findArr);
+      setFilter(findArr);
+      localStorage.setItem("storageSavedFilter", JSON.stringify({ findArr, subStr, shortFilm }));
+    });
   }
 
   return (
@@ -51,6 +69,7 @@ function SavedMovies(props) {
           onShortFilmChange={handleShortFilmChange}
           onSubmit={handleSubmit}
           checked={shortFilm}
+          subStr={subStr}
         />
         {notFound ? (
           <h2 className="content__not-found page__content">Ничего не найдено</h2>

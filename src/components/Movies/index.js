@@ -23,15 +23,32 @@ function Movies(props) {
 
   React.useEffect(() => {
     props.onMovies();
+
+    const storageFilter = JSON.parse(localStorage.getItem("storageFilter"));
+
+    if (storageFilter) {
+      setSubStr(storageFilter.subStr);
+      setShortFilm(storageFilter.shortFilm);
+      setFilter(storageFilter.findArr);
+    }
   }, []);
 
   React.useEffect(() => {
-    if (offset[1] >= filter.length) {
-      setButtonVisible(false);
-    } else {
-      setButtonVisible(true);
+    if (subStr) {
+      const findArr = filteredMovies(movies, subStr, shortFilm);
+      setFilter(findArr);
+
+      localStorage.setItem("storageFilter", JSON.stringify({ findArr, subStr, shortFilm }));
     }
-  }, [offset, filter.length]);
+  }, [movies]);
+
+  React.useEffect(() => {
+    if (filter && offset[1] < filter.length) {
+      setButtonVisible(true);
+    } else {
+      setButtonVisible(false);
+    }
+  }, [offset, filter]);
 
   function handleSubStrChange(e) {
     setSubStr(e.target.value);
@@ -49,6 +66,8 @@ function Movies(props) {
     setNotFound(findArr.length === 0 ? true : false);
     setOffset([0, isMobile ? 2 : isTablet ? 3 : 4]);
     setFilter(findArr);
+
+    localStorage.setItem("storageFilter", JSON.stringify({ findArr, subStr, shortFilm }));
   }
 
   function handleClick(e) {
@@ -70,6 +89,7 @@ function Movies(props) {
           onShortFilmChange={handleShortFilmChange}
           onSubmit={handleSubmit}
           checked={shortFilm}
+          subStr={subStr}
         />
         {notFound ? (
           <h2 className="content__not-found page__content">Ничего не найдено</h2>

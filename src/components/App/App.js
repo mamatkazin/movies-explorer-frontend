@@ -23,7 +23,7 @@ function App() {
 
   const [waiting, setWaiting] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState(null);
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(localStorage.getItem("loggedIn") || false);
   const [err, setErr] = React.useState(null);
   const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
@@ -34,6 +34,7 @@ function App() {
       .then((data) => {
         setLoggedIn(true);
         setCurrentUser(data);
+        localStorage.setItem("currentUser", JSON.stringify(data));
       })
       .catch((error) => {
         if (error instanceof HTTPError) {
@@ -127,8 +128,9 @@ function App() {
         handleInsertMovie(card).then(() => {
           handleSavedMovies().then((savedFilms) => {
             const likedFilms = setFieldLike(movies, savedFilms);
-            setMovies([]);
-            setMovies(likedFilms);
+            // setMovies([]);
+            setMovies([...[], ...likedFilms]);
+
             localStorage.setItem("movies", JSON.stringify(likedFilms));
           });
         });
@@ -246,6 +248,7 @@ function App() {
       .then((data) => {
         setCurrentUser(data);
         setLoggedIn(true);
+        localStorage.setItem("loggedIn", true);
         setWaiting(false);
 
         history.push("/movies");

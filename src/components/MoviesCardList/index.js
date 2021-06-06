@@ -13,7 +13,7 @@ function MoviesCardList(props) {
         isMobile ? "page__content_width_xs" : isTablet ? "page__content_width_m" : ""
       }`}
     >
-      {props.cards.length > 0 && (
+      {props.cards && props.cards.length > 0 && (
         <ul className="movies__list">
           {typeof props.offset === "undefined"
             ? props.cards.map((card, i) => (
