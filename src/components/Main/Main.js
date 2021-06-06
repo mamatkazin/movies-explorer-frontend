@@ -1,23 +1,22 @@
-import React from 'react';
-import Header from '../Header/Header';
-import Banner from '../Banner/Banner';
-import NavTab from '../NavTab/NavTab';
-import AboutProject from '../AboutProject';
-import Techs from '../Techs';
-import AboutMe from '../AboutMe';
-import Footer from '../Footer';
-
-// import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import React from "react";
+import Header from "../Header/Header";
+import Banner from "../Banner/Banner";
+import NavTab from "../NavTab/NavTab";
+import AboutProject from "../AboutProject";
+import Techs from "../Techs";
+import AboutMe from "../AboutMe";
+import Footer from "../Footer";
+//import { CurrentUserContext } from "../../contexts";
 
 function Main(props) {
-  // const currentUser = React.useContext(CurrentUserContext);
+  //const currentUser = React.useContext(CurrentUserContext);
 
   return (
-    <div className='page'>
-      <Header loggedIn={props.loggedIn} themeColor='dark'></Header>
+    <div className="page">
+      <Header loggedIn={props.loggedIn} themeColor="dark"></Header>
       <Banner></Banner>
       <NavTab></NavTab>
-      <main className='content'>
+      <main className="content">
         <AboutProject />
         <Techs />
         <AboutMe />

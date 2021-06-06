@@ -1,35 +1,29 @@
-import React from 'react';
-import { useMediaQuery } from 'react-responsive';
-import MoviesCard from '../MoviesCard';
-import './index.css';
+import React from "react";
+import { useMediaQuery } from "react-responsive";
+import MoviesCard from "../MoviesCard";
+import "./index.css";
 
 function MoviesCardList(props) {
-  const isTablet = useMediaQuery({ query: '(max-width: 1023px)' });
-  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const isTablet = useMediaQuery({ query: "(max-width: 1023px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
   return (
     <section
       className={`movies page__content ${
-        isMobile
-          ? 'page__content_width_xs'
-          : isTablet
-          ? 'page__content_width_m'
-          : ''
+        isMobile ? "page__content_width_xs" : isTablet ? "page__content_width_m" : ""
       }`}
     >
-      <ul className='movies__list'>
-        {props.cards.length > 0 &&
-          props.cards.slice(0, 16).map((card, i) => (
-            <MoviesCard
-              key={card.id}
-              card={card}
-              liked={props.liked}
-              // onCardClick={props.onCardClick}
-              onCardLike={props.onCardLike}
-              onCardDelete={props.onCardDelete}
-            />
-          ))}
-      </ul>
+      {props.cards && props.cards.length > 0 && (
+        <ul className="movies__list">
+          {typeof props.offset === "undefined"
+            ? props.cards.map((card, i) => (
+                <MoviesCard key={card.movieId} card={card} onLike={props.onLike} />
+              ))
+            : props.cards
+                .slice(props.offset[0], props.offset[1])
+                .map((card, i) => <MoviesCard key={card.id} card={card} onLike={props.onLike} />)}
+        </ul>
+      )}
     </section>
   );
 }

@@ -1,3 +1,9 @@
+.card__like {
+  width: 10px;
+  height: 8.5px;
+  border: 0;
+}
+
 .card__like:hover {
   background: url(../../../images/close.svg) no-repeat center;
 }
